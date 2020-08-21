@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--父工程的依赖-->
+    <parent>
+        <groupId>com.ecnu.edu</groupId>
+        <artifactId>pet-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <!--子模块本身包结构及版本-->
+    <groupId>com.ecnu.edu</groupId>
+    <artifactId>pet-config</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>pet-config</name>
+    <description>config</description>
+
+    <!--子模块的个性化依赖-->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
