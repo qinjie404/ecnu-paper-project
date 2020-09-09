@@ -2,6 +2,7 @@ package com.ecnu.edu.petregistry;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
@@ -9,7 +10,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
  *
  * @author Leo Qin
  */
-@SpringBootApplication
+@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
 @EnableEurekaServer
 public class PetRegistryApplication {
 
