@@ -29,7 +29,6 @@
 
     <!--子模块 -->
     <modules>
-        <module>pet-config</module>
         <module>pet-registry</module>
         <module>pet-example-a</module>
         <module>pet-example-b</module>
