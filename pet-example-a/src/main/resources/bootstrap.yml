@@ -1,6 +1,7 @@
 spring:
   application:
     name: pet-example-a
+    instance_id: localhost
 
 server:
   port: 8010
@@ -14,4 +15,4 @@ eureka:
     lease-renewal-interval-in-seconds: 10      # 心跳时间，即服务续约间隔时间（缺省为30s）
     lease-expiration-duration-in-seconds: 60  # 发呆时间，即服务续约到期时间（缺省为90s）
     prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    instance-id: ${spring.application.name}:${spring.application.instance_id}:${server.port}
