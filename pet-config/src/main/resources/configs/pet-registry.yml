@@ -2,6 +2,9 @@ spring:
   application:
     name: pet-registry
 
+server:
+  port: 8001
+
 # Eureka相关配置
 eureka:
   client:
@@ -10,5 +13,3 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:${server.port}/eureka/
 
-server:
-  port: 8001
