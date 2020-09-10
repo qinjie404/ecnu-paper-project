@@ -1,5 +1,15 @@
 spring:
-  cloud:
-    config:
-      name: pet-registry #配置文件名称，多个通过逗号分隔
-      uri: http://localhost:8000 #Config Server服务地址
+  application:
+    name: pet-registry
+
+server:
+  port: 8001
+
+# Eureka相关配置
+eureka:
+  client:
+    register-with-eureka: false #不注册服务
+    fetch-registry: false #不拉取服务清单
+    serviceUrl:
+      defaultZone: http://localhost:${server.port}/eureka/
+

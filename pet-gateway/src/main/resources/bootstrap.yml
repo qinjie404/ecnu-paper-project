@@ -1,7 +1,35 @@
 spring:
-  cloud:
-    config:
-      name: pet-gateway
-      uri: http://localhost:8000
-#      username: user
-#      password: 123456
+  application:
+    name: pet-gateway
+
+server:
+  port: 8002
+
+# Eureka相关配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 60  # 发呆时间，即服务续约到期时间（缺省为90s）
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+# 添加ribbon的超时时间设置
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+
+zuul:
+  host:
+    connect-timeout-millis: 3000
+    socket-timeout-millis: 3000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeout-in-milliseconds: 3000
