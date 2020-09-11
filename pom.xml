@@ -30,7 +30,7 @@
     <!--子模块 -->
     <modules>
         <module>pet-registry</module>
-        <module>pet-example-a</module>
+        <module>pet-user</module>
         <module>pet-example-b</module>
         <module>pet-gateway</module>
         <module>pet-api-base</module>
