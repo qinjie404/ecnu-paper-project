@@ -1,0 +1,40 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: ${pet.service.pet-user}
+          uri: lb://${pet.service.pet-user}
+          predicates:
+            - Path=/${pet.service.pet-user}/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                # 使用SpEL按名称引用bean
+                #key-resolver: '#{@remoteAddrKeyResolver}'
+                # 允许用户每秒处理多少个请求
+                redis-rate-limiter.replenishRate: 10
+                # 允许在一秒钟内完成的最大请求数
+                redis-rate-limiter.burstCapacity: 20
+            - StripPrefix=1
+        - id: ${pet.service.pet-example-b}
+          uri: lb://${pet.service.pet-example-b}
+          predicates:
+            - Path=/${pet.service.pet-example-b}/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                # 使用SpEL按名称引用bean
+                #key-resolver: '#{@remoteAddrKeyResolver}'
+                # 允许用户每秒处理多少个请求
+                redis-rate-limiter.replenishRate: 10
+                # 允许在一秒钟内完成的最大请求数
+                redis-rate-limiter.burstCapacity: 20
+            - StripPrefix=1
+# 需要配置的服务名
+pet:
+  service:
+    pet-user: user
+    pet-example-b: exampleB

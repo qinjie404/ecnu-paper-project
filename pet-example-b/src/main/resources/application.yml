@@ -43,3 +43,7 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+#swagger
+swagger:
+  base-package: com.ecnu.edu.petexampleb.controller
