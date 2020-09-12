@@ -1,6 +1,6 @@
 package com.ecnu.edu.petuser.dao;
 
-import com.ecnu.edu.petapibase.examplea.domain.UserDO;
+import com.ecnu.edu.petapibase.petuser.domain.UserDO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

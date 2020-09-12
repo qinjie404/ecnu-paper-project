@@ -1,4 +1,4 @@
-package com.ecnu.edu.petapibase.examplea.domain;
+package com.ecnu.edu.petapibase.petuser.domain;
 
 import lombok.Data;
 

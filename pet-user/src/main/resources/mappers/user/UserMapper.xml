@@ -6,7 +6,7 @@
 <mapper namespace="com.ecnu.edu.petuser.dao.UserDao">
 
 
-    <select id="getUserList" resultType="com.ecnu.edu.petapibase.examplea.domain.UserDO">
+    <select id="getUserList" resultType="com.ecnu.edu.petapibase.petuser.domain.UserDO">
         select *
         from pet_user
     </select>
