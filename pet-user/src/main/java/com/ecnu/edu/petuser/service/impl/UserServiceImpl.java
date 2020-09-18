@@ -1,6 +1,6 @@
 package com.ecnu.edu.petuser.service.impl;
 
-import com.ecnu.edu.petapibase.entity.base.PageVO;
+import com.ecnu.edu.petapibase.entity.base.vo.PageVO;
 import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
 import com.ecnu.edu.petapibase.entity.petuser.query.UserQuery;
 import com.ecnu.edu.petuser.dao.UserDao;
