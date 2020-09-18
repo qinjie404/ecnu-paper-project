@@ -1,4 +1,4 @@
-package com.ecnu.edu.petapibase.petuser.query;
+package com.ecnu.edu.petapibase.entity.petuser.query;
 
 import lombok.Data;
 

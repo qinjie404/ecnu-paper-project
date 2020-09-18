@@ -1,8 +1,8 @@
 package com.ecnu.edu.petuser.controller;
 
-import com.ecnu.edu.petapibase.base.PageVO;
-import com.ecnu.edu.petapibase.petuser.domain.UserDO;
-import com.ecnu.edu.petapibase.petuser.query.UserQuery;
+import com.ecnu.edu.petapibase.entity.base.PageVO;
+import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
+import com.ecnu.edu.petapibase.entity.petuser.query.UserQuery;
 import com.ecnu.edu.petuser.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

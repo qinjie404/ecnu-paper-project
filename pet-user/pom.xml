@@ -102,6 +102,11 @@
             <artifactId>swagger-spring-boot-starter</artifactId>
             <version>${swagger-spring-boot-starter.version}</version>
         </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mapper.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

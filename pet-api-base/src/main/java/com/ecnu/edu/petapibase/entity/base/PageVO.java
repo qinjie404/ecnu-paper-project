@@ -1,4 +1,4 @@
-package com.ecnu.edu.petapibase.base;
+package com.ecnu.edu.petapibase.entity.base;
 
 import lombok.Data;
 

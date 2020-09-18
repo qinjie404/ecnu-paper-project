@@ -1,15 +1,13 @@
 package com.ecnu.edu.petuser.dao;
 
-import com.ecnu.edu.petapibase.petuser.domain.UserDO;
+import com.ecnu.edu.petapibase.dao.BaseDao;
+import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * @author 13862
  */
 @Repository
-public interface UserDao {
+public interface UserDao extends BaseDao<UserDO> {
 
-    List<UserDO> getUserList();
 }

@@ -1,8 +1,8 @@
 package com.ecnu.edu.petuser.service.impl;
 
-import com.ecnu.edu.petapibase.base.PageVO;
-import com.ecnu.edu.petapibase.petuser.domain.UserDO;
-import com.ecnu.edu.petapibase.petuser.query.UserQuery;
+import com.ecnu.edu.petapibase.entity.base.PageVO;
+import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
+import com.ecnu.edu.petapibase.entity.petuser.query.UserQuery;
 import com.ecnu.edu.petuser.dao.UserDao;
 import com.ecnu.edu.petuser.service.UserService;
 import com.github.pagehelper.Page;
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDO> getUserList() {
-        return userDao.getUserList();
+        return userDao.selectAll();
     }
 
     @Override
