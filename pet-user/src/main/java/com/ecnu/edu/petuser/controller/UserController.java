@@ -32,9 +32,9 @@ public class UserController {
     public CommonRes getUserList() {
         try{
             List<UserDO> userList = userService.getUserList();
-            return CommonRes.getInstance().getCommonRes(CommonRes.SUCCESS_STATUS,userList);
+            return CommonRes.getCommonRes(CommonRes.SUCCESS_STATUS,userList);
         }catch (Exception e){
-            return CommonRes.getInstance().getCommonRes(CommonRes.FAIL_STATUS, "获取所有用户接口调用失败");
+            return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "获取所有用户接口调用失败");
         }
     }
 

@@ -32,19 +32,15 @@ public class CommonRes {
         this.message = message;
     }
 
-    public static CommonRes getInstance() {
-        return new CommonRes();
-    }
-
-    public CommonRes getCommonRes(Integer status, String message, Object resBody) {
+    public static CommonRes getCommonRes(Integer status, String message, Object resBody) {
         return new CommonRes(resBody, status, message);
     }
 
-    public CommonRes getCommonRes(Integer status, Object resBody) {
+    public static CommonRes getCommonRes(Integer status, Object resBody) {
         return new CommonRes(resBody, status, StringUtils.EMPTY);
     }
 
-    public CommonRes getCommonRes(Integer status, String message) {
+    public static CommonRes getCommonRes(Integer status, String message) {
         return new CommonRes(null, status, message);
     }
 }
