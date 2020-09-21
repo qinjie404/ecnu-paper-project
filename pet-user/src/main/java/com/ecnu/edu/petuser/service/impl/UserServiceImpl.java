@@ -3,6 +3,7 @@ package com.ecnu.edu.petuser.service.impl;
 import com.ecnu.edu.petapibase.entity.base.vo.PageVO;
 import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
 import com.ecnu.edu.petapibase.entity.petuser.query.UserQuery;
+import com.ecnu.edu.petapibase.service.impl.BaseServiceImpl;
 import com.ecnu.edu.petuser.dao.UserDao;
 import com.ecnu.edu.petuser.service.UserService;
 import com.github.pagehelper.Page;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<UserDO> implements UserService {
 
     @Autowired
     private UserDao userDao;

@@ -20,5 +20,7 @@ public class UserDO extends BaseDataDO {
     private Integer userId;
     @ApiModelProperty(value = "名字")
     private String userName;
+    @ApiModelProperty(value = "年龄")
+    private Integer age;
 
 }
