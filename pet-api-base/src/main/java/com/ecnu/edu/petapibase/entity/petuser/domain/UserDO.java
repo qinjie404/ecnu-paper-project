@@ -1,8 +1,10 @@
 package com.ecnu.edu.petapibase.entity.petuser.domain;
 
 import com.ecnu.edu.petapibase.entity.base.domain.BaseDataDO;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,7 +13,9 @@ import javax.persistence.Table;
  * @author 13862
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "pet_user")
+@ApiModel(value = "UserDO实体",description = "用户表")
 public class UserDO extends BaseDataDO {
 
     private static final long serialVersionUID = 4826344082186156181L;

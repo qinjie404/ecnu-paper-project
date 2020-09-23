@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 </#if>
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -32,9 +33,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
     </#if>
 </#if>
-<#if table.convert>
-@TableName("${table.name}")
-</#if>
+@Table(name = "${table.name}")
 <#if swagger2>
 @ApiModel(value = "${entity}实体",description = "${table.comment!}")
 </#if>
@@ -61,16 +60,16 @@ public class ${entity} extends ${superEntityClass} implements Serializable {
     </#if>
     <#if field.keyFlag>
     <#-- 主键 -->
-    <#if field.keyIdentityFlag>
-        @TableId(value = "${field.name}", type = IdType.AUTO)
-        @Id
-    <#elseif idType??>
-        @TableId(value = "${field.name}", type = IdType.${idType})
-        @Id
-    <#elseif field.convert>
-        @TableId("${field.name}")
-        @Id
-    </#if>
+<#if field.keyIdentityFlag>
+    @TableId(value = "${field.name}", type = IdType.AUTO)
+    @Id
+<#elseif idType??>
+    @TableId(value = "${field.name}", type = IdType.${idType})
+    @Id
+<#elseif field.convert>
+    @TableId("${field.name}")
+    @Id
+</#if>
     <#-- 普通字段 -->
     <#elseif field.fill??>
     <#-- -----   存在字段填充设置   ----->
