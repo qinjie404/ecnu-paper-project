@@ -9,28 +9,27 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.ecnu.edu</groupId>
-    <artifactId>pet-gateway</artifactId>
+    <artifactId>pet-generator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>pet-gateway</name>
-    <description>gateway</description>
+    <name>pet-generator</name>
 
     <dependencies>
-        <!-- zuul -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.4.0</version>
         </dependency>
-
-        <!-- Eureka Client Starter -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.30</version>
         </dependency>
-
-        <!-- Config Client Starter -->
+        <!--mysql-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
