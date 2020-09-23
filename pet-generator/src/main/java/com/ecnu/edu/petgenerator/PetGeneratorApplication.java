@@ -53,9 +53,9 @@ public class PetGeneratorApplication {
          * 全局配置
          */
         GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir");
+//        String projectPath = System.getProperty("user.dir");
         // 输出路径
-        gc.setOutputDir(projectPath + "\\pet-generator\\src\\main\\java");
+        gc.setOutputDir("C:\\Users\\13862\\Desktop\\generator");
         // 作者
         gc.setAuthor("qinjie");
         gc.setOpen(false);
@@ -89,7 +89,7 @@ public class PetGeneratorApplication {
         PackageConfig pc = new PackageConfig();
         //pc.setModuleName(scanner("模块名"));
         // 包主路径
-        pc.setParent("com.ecnu.edu.petgenerator");
+        pc.setParent("");
         // 自定义实体类包路径
         pc.setEntity("entity.domain");
         // 自定义Service路径
@@ -117,7 +117,7 @@ public class PetGeneratorApplication {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return projectPath + "/pet-generator/src/main/resources/mapper/" + tableInfo.getMapperName() + StringPool.DOT_XML;
+                return "C:\\Users\\13862\\Desktop\\generator\\" + tableInfo.getMapperName() + StringPool.DOT_XML;
             }
         });
         cfg.setFileOutConfigList(focList);
