@@ -37,6 +37,7 @@
         <module>pet-gateway</module>
         <module>pet-api-base</module>
         <module>pet-generator</module>
+        <module>pet-sso</module>
     </modules>
 
     <dependencyManagement>
