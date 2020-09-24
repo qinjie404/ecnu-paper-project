@@ -1,4 +1,4 @@
-package com.ecnu.edu.petgateway;
+package com.ecnu.edu.petgateway.config.swagger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

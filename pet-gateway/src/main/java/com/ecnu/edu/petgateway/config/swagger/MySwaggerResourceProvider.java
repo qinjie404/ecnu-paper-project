@@ -1,4 +1,4 @@
-package com.ecnu.edu.petgateway;
+package com.ecnu.edu.petgateway.config.swagger;
 
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
