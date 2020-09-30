@@ -31,9 +31,9 @@
 
     <!--子模块 -->
     <modules>
+        <module>pet-configuration</module>
         <module>pet-registry</module>
         <module>pet-user</module>
-        <module>pet-example-b</module>
         <module>pet-gateway</module>
         <module>pet-api-base</module>
         <module>pet-generator</module>

@@ -1,0 +1,32 @@
+spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+mybatis:
+  #开启mybatis驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true
+  #mapper文件所在位置
+  mapper-locations: classpath*:mappers/**/*.xml
+
+#设置编码
+server:
+  servlet:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+# 配置pageHelper参数
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+pet:
+  service:
+    name:
+      pet-user: pet-user
+      pet-sso: pet-sso
