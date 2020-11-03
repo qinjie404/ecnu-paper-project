@@ -19,12 +19,23 @@ import javax.persistence.Table;
 public class UserDO extends BaseDataDO {
 
     private static final long serialVersionUID = 4826344082186156181L;
+    @ApiModelProperty(value = "主键")
     @Id
-    @ApiModelProperty(value = "主键id")
     private Integer userId;
-    @ApiModelProperty(value = "名字")
+
+    @ApiModelProperty(value = "用户名")
     private String userName;
-    @ApiModelProperty(value = "年龄")
-    private Integer age;
+
+    @ApiModelProperty(value = "密码")
+    private String password;
+
+    @ApiModelProperty(value = "手机号")
+    private String mobilePhone;
+
+    @ApiModelProperty(value = "邮箱")
+    private String email;
+
+    @ApiModelProperty(value = "头像")
+    private String icon;
 
 }
