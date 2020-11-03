@@ -14,4 +14,6 @@ public interface UserService extends BaseService<UserDO> {
     List<UserDO> getUserList();
 
     PageVO<UserDO> getUserListByPage(UserQuery query);
+
+    UserDO selectById(int userId);
 }
