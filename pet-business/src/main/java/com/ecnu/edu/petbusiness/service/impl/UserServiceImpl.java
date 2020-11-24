@@ -1,11 +1,11 @@
-package com.ecnu.edu.petuser.service.impl;
+package com.ecnu.edu.petbusiness.service.impl;
 
 import com.ecnu.edu.petapibase.entity.base.vo.PageVO;
 import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
 import com.ecnu.edu.petapibase.entity.petuser.query.UserQuery;
 import com.ecnu.edu.petapibase.service.impl.BaseServiceImpl;
-import com.ecnu.edu.petuser.dao.UserDao;
-import com.ecnu.edu.petuser.service.UserService;
+import com.ecnu.edu.petbusiness.dao.user.UserDao;
+import com.ecnu.edu.petbusiness.service.UserService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;

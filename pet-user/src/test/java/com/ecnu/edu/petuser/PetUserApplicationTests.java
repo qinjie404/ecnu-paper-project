@@ -1,7 +1,6 @@
 package com.ecnu.edu.petuser;
 
 import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
-import com.ecnu.edu.petuser.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

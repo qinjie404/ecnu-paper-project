@@ -1,10 +1,10 @@
-package com.ecnu.edu.petuser.controller;
+package com.ecnu.edu.petbusiness.controller;
 
 import com.ecnu.edu.petapibase.entity.base.CommonRes;
 import com.ecnu.edu.petapibase.entity.base.vo.PageVO;
 import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
 import com.ecnu.edu.petapibase.entity.petuser.query.UserQuery;
-import com.ecnu.edu.petuser.service.UserService;
+import com.ecnu.edu.petbusiness.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

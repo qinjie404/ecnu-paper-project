@@ -38,6 +38,7 @@
         <module>pet-api-base</module>
         <module>pet-generator</module>
         <module>pet-sso</module>
+        <module>pet-business</module>
     </modules>
 
     <dependencyManagement>

@@ -1,4 +1,4 @@
-package com.ecnu.edu.petuser.service;
+package com.ecnu.edu.petbusiness.service;
 
 import com.ecnu.edu.petapibase.entity.base.vo.PageVO;
 import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;

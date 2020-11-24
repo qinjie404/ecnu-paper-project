@@ -36,6 +36,6 @@ public class UserDO extends BaseDataDO {
     private String email;
 
     @ApiModelProperty(value = "头像")
-    private String icon;
+    private Integer iconId;
 
 }
