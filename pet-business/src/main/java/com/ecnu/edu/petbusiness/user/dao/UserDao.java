@@ -1,4 +1,4 @@
-package com.ecnu.edu.petbusiness.dao.user;
+package com.ecnu.edu.petbusiness.user.dao;
 
 import com.ecnu.edu.petapibase.dao.BaseDao;
 import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;

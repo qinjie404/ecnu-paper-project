@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @description
  * @date 2020/9/30 14:37
  */
-@FeignClient(name = "${pet.service.name.pet-user}")
+@FeignClient(name = "${pet.service.name.pet-business}")
 public interface UserRemoteService {
 
 
