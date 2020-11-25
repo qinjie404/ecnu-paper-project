@@ -6,6 +6,7 @@ import com.ecnu.edu.petapibase.entity.petuser.query.UserQuery;
 import com.ecnu.edu.petsso.service.UserRemoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,10 +23,7 @@ public class RemoteController {
     private UserRemoteService userRemoteService;
 
     @PostMapping(path = "/call2b")
-    public PageVO<UserDO> sayHello2B() {
-        UserQuery query=new UserQuery();
-        query.setPageNo(1);
-        query.setPageSize(1);
+    public PageVO<UserDO> sayHello2B(@RequestBody UserQuery query) {
         return userRemoteService.getUserListByPage(query);
     }
 
