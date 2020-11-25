@@ -1,4 +1,4 @@
-package com.ecnu.edu.petapibase.entity.base;
+package com.ecnu.edu.petapibase.base.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

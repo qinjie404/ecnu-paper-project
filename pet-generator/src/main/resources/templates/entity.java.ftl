@@ -37,7 +37,7 @@ import java.util.Date;
 <#if swagger2>
 @ApiModel(value = "${entity}实体",description = "${table.comment!}")
 </#if>
-public class ${entity} extends ${superEntityClass} implements Serializable {
+public class ${entity} extends ${superEntityClass} {
 
 
 <#if entitySerialVersionUID>
@@ -61,13 +61,13 @@ public class ${entity} extends ${superEntityClass} implements Serializable {
     <#if field.keyFlag>
     <#-- 主键 -->
 <#if field.keyIdentityFlag>
-    @TableId(value = "${field.name}", type = IdType.AUTO)
+    <#--@TableId(value = "${field.name}", type = IdType.AUTO)-->
     @Id
 <#elseif idType??>
-    @TableId(value = "${field.name}", type = IdType.${idType})
+    <#--@TableId(value = "${field.name}", type = IdType.${idType})-->
     @Id
 <#elseif field.convert>
-    @TableId("${field.name}")
+    <#--@TableId("${field.name}")-->
     @Id
 </#if>
     <#-- 普通字段 -->

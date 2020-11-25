@@ -1,4 +1,4 @@
-package com.ecnu.edu.petapibase.service;
+package com.ecnu.edu.petapibase.base.service;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.ecnu.edu.petbusiness.user.dao;
 
-import com.ecnu.edu.petapibase.dao.BaseDao;
-import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
+import com.ecnu.edu.petapibase.base.dao.BaseDao;
+import com.ecnu.edu.petapibase.user.domain.UserDO;
 import org.springframework.stereotype.Repository;
 
 /**

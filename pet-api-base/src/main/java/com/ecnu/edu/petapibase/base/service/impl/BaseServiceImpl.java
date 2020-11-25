@@ -1,7 +1,7 @@
-package com.ecnu.edu.petapibase.service.impl;
+package com.ecnu.edu.petapibase.base.service.impl;
 
-import com.ecnu.edu.petapibase.dao.BaseDao;
-import com.ecnu.edu.petapibase.service.BaseService;
+import com.ecnu.edu.petapibase.base.dao.BaseDao;
+import com.ecnu.edu.petapibase.base.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

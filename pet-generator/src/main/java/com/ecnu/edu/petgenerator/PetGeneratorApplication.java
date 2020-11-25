@@ -55,7 +55,7 @@ public class PetGeneratorApplication {
         GlobalConfig gc = new GlobalConfig();
 //        String projectPath = System.getProperty("user.dir");
         // 输出路径
-        gc.setOutputDir("C:\\Users\\13862\\Desktop\\generator");
+        gc.setOutputDir("E:\\generator");
         // 作者
         gc.setAuthor("qinjie");
         gc.setOpen(false);
@@ -136,10 +136,10 @@ public class PetGeneratorApplication {
         strategy.setSuperEntityColumns("create_time", "create_id", "update_time", "update_id", "status");
         // 默认表前缀
         strategy.setTablePrefix("pet_");
-        strategy.setSuperEntityClass("com.ecnu.edu.petapibase.entity.base.domain.BaseDataDO");
-        strategy.setSuperMapperClass("com.ecnu.edu.petapibase.dao.BaseDao");
-        strategy.setSuperServiceClass("com.ecnu.edu.petapibase.service.BaseService");
-        strategy.setSuperServiceImplClass("com.ecnu.edu.petapibase.service.impl.BaseServiceImpl");
+        strategy.setSuperEntityClass("com.ecnu.edu.petapibase.base.entity.BaseDataDO");
+        strategy.setSuperMapperClass("com.ecnu.edu.petapibase.base.dao.BaseDao");
+        strategy.setSuperServiceClass("com.ecnu.edu.petapibase.base.service.BaseService");
+        strategy.setSuperServiceImplClass("com.ecnu.edu.petapibase.base.service.impl.BaseServiceImpl");
 //        strategy.setSuperControllerClass("");
         strategy.setRestControllerStyle(true);
         strategy.setControllerMappingHyphenStyle(true);

@@ -1,4 +1,4 @@
-package com.ecnu.edu.petapibase.dao;
+package com.ecnu.edu.petapibase.base.dao;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;

@@ -1,6 +1,6 @@
-package com.ecnu.edu.petapibase.entity.petuser.domain;
+package com.ecnu.edu.petapibase.user.domain;
 
-import com.ecnu.edu.petapibase.entity.base.domain.BaseDataDO;
+import com.ecnu.edu.petapibase.base.entity.BaseDataDO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

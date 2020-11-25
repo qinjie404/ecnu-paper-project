@@ -1,9 +1,9 @@
 package com.ecnu.edu.petbusiness.user.service.impl;
 
-import com.ecnu.edu.petapibase.entity.base.vo.PageVO;
-import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
-import com.ecnu.edu.petapibase.entity.petuser.query.UserQuery;
-import com.ecnu.edu.petapibase.service.impl.BaseServiceImpl;
+import com.ecnu.edu.petapibase.base.entity.PageVO;
+import com.ecnu.edu.petapibase.user.domain.UserDO;
+import com.ecnu.edu.petapibase.user.query.UserQuery;
+import com.ecnu.edu.petapibase.base.service.impl.BaseServiceImpl;
 import com.ecnu.edu.petbusiness.user.dao.UserDao;
 import com.ecnu.edu.petbusiness.user.service.UserService;
 import com.github.pagehelper.Page;

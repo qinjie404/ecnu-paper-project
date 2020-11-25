@@ -1,4 +1,4 @@
-package com.ecnu.edu.petapibase.entity.base.domain;
+package com.ecnu.edu.petapibase.base.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;

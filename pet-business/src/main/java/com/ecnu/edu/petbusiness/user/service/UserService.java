@@ -1,9 +1,9 @@
 package com.ecnu.edu.petbusiness.user.service;
 
-import com.ecnu.edu.petapibase.entity.base.vo.PageVO;
-import com.ecnu.edu.petapibase.entity.petuser.domain.UserDO;
-import com.ecnu.edu.petapibase.entity.petuser.query.UserQuery;
-import com.ecnu.edu.petapibase.service.BaseService;
+import com.ecnu.edu.petapibase.base.entity.PageVO;
+import com.ecnu.edu.petapibase.user.domain.UserDO;
+import com.ecnu.edu.petapibase.user.query.UserQuery;
+import com.ecnu.edu.petapibase.base.service.BaseService;
 
 import java.util.List;
 
