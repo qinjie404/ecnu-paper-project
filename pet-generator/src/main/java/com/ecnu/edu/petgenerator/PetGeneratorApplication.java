@@ -117,7 +117,7 @@ public class PetGeneratorApplication {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return "C:\\Users\\13862\\Desktop\\generator\\" + tableInfo.getMapperName() + StringPool.DOT_XML;
+                return "E:\\generator\\" + tableInfo.getMapperName() + StringPool.DOT_XML;
             }
         });
         cfg.setFileOutConfigList(focList);
@@ -136,10 +136,10 @@ public class PetGeneratorApplication {
         strategy.setSuperEntityColumns("create_time", "create_id", "update_time", "update_id", "status");
         // 默认表前缀
         strategy.setTablePrefix("pet_");
-        strategy.setSuperEntityClass("com.ecnu.edu.petapibase.base.entity.BaseDataDO");
-        strategy.setSuperMapperClass("com.ecnu.edu.petapibase.base.dao.BaseDao");
-        strategy.setSuperServiceClass("com.ecnu.edu.petapibase.base.service.BaseService");
-        strategy.setSuperServiceImplClass("com.ecnu.edu.petapibase.base.service.impl.BaseServiceImpl");
+        strategy.setSuperEntityClass("com.ecnu.edu.petapibase.common.entity.BaseDataDO");
+        strategy.setSuperMapperClass("com.ecnu.edu.petapibase.common.dao.BaseDao");
+        strategy.setSuperServiceClass("com.ecnu.edu.petapibase.common.service.BaseService");
+        strategy.setSuperServiceImplClass("com.ecnu.edu.petapibase.common.service.impl.BaseServiceImpl");
 //        strategy.setSuperControllerClass("");
         strategy.setRestControllerStyle(true);
         strategy.setControllerMappingHyphenStyle(true);

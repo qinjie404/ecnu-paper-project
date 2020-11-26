@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/mappers/user")
 @Api(value = "用户接口")
 public class UserController {
 
