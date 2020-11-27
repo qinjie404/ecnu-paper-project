@@ -6,4 +6,21 @@
 <mapper namespace="com.ecnu.edu.petbusiness.user.dao.UserNotesDao">
 
 
+    <select id="queryUserNotes" resultType="com.ecnu.edu.petapibase.user.vo.CommunityNotesVO">
+        SELECT
+            un.user_id,
+            un.note_id,
+            un.title,
+            un.thumbs_up_number,
+            u.user_name,
+            u.icon_id AS headImageId
+        FROM
+            pet_user_notes un
+            LEFT JOIN pet_user u ON un.user_id = u.user_id
+        WHERE
+            un.STATUS = 1
+            AND u.`status` = 1
+        ORDER BY
+            un.create_time DESC
+    </select>
 </mapper>

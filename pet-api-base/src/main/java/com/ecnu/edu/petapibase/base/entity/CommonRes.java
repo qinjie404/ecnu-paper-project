@@ -10,11 +10,13 @@ import org.apache.commons.lang3.StringUtils;
  * @author 13862
  */
 @Data
-public class CommonRes {
+public class CommonRes<T> {
+
     public static final Integer SUCCESS_STATUS = 1;
     public static final Integer FAIL_STATUS = 0;
+
     @ApiModelProperty("响应实体")
-    private Object resBody;
+    private T resBody;
     @ApiModelProperty("状态")
     private Integer status;
     @ApiModelProperty("响应信息")
@@ -26,21 +28,21 @@ public class CommonRes {
 
     }
 
-    public CommonRes(Object resBody, Integer status, String message) {
+    private CommonRes(T resBody, Integer status, String message) {
         this.resBody = resBody;
         this.status = status;
         this.message = message;
     }
 
-    public static CommonRes getCommonRes(Integer status, String message, Object resBody) {
-        return new CommonRes(resBody, status, message);
+    public static <T> CommonRes<T> getCommonRes(Integer status, String message, T resBody) {
+        return new CommonRes<>(resBody, status, message);
     }
 
-    public static CommonRes getCommonRes(Integer status, Object resBody) {
-        return new CommonRes(resBody, status, StringUtils.EMPTY);
+    public static <T> CommonRes<T> getCommonRes(Integer status, T resBody) {
+        return new CommonRes<>(resBody, status, StringUtils.EMPTY);
     }
 
-    public static CommonRes getCommonRes(Integer status, String message) {
-        return new CommonRes(null, status, message);
+    public static <T> CommonRes<T> getCommonRes(Integer status, String message) {
+        return new CommonRes<>(null, status, message);
     }
 }

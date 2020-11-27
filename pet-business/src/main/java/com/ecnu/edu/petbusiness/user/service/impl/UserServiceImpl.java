@@ -1,9 +1,9 @@
 package com.ecnu.edu.petbusiness.user.service.impl;
 
 import com.ecnu.edu.petapibase.base.entity.PageVO;
-import com.ecnu.edu.petapibase.user.domain.UserDO;
-import com.ecnu.edu.petapibase.user.query.UserQuery;
 import com.ecnu.edu.petapibase.base.service.impl.BaseServiceImpl;
+import com.ecnu.edu.petapibase.common.query.PageQuery;
+import com.ecnu.edu.petapibase.user.domain.UserDO;
 import com.ecnu.edu.petbusiness.user.dao.UserDao;
 import com.ecnu.edu.petbusiness.user.service.UserService;
 import com.github.pagehelper.Page;
@@ -30,17 +30,12 @@ public class UserServiceImpl extends BaseServiceImpl<UserDO> implements UserServ
     }
 
     @Override
-    public PageVO<UserDO> getUserListByPage(UserQuery query) {
+    public PageVO<UserDO> getUserListByPage(PageQuery query) {
         Page<UserDO> page = PageHelper.startPage(query.getPageNo(), query.getPageSize());
         List<UserDO> userDOS = getUserList();
         PageVO<UserDO> pageVO = new PageVO<>();
         pageVO.setList(userDOS);
         pageVO.setTotalNum(page.getTotal());
         return pageVO;
-    }
-
-    @Override
-    public UserDO selectById(int userId) {
-        return userDao.selectByPrimaryKey(userId);
     }
 }

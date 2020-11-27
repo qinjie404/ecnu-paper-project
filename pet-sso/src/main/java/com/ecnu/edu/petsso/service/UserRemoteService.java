@@ -2,7 +2,6 @@ package com.ecnu.edu.petsso.service;
 
 import com.ecnu.edu.petapibase.base.entity.PageVO;
 import com.ecnu.edu.petapibase.user.domain.UserDO;
-import com.ecnu.edu.petapibase.user.query.UserQuery;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

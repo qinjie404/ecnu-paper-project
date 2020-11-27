@@ -1,9 +1,9 @@
 package com.ecnu.edu.petbusiness.user.service;
 
 import com.ecnu.edu.petapibase.base.entity.PageVO;
-import com.ecnu.edu.petapibase.user.domain.UserDO;
-import com.ecnu.edu.petapibase.user.query.UserQuery;
 import com.ecnu.edu.petapibase.base.service.BaseService;
+import com.ecnu.edu.petapibase.common.query.PageQuery;
+import com.ecnu.edu.petapibase.user.domain.UserDO;
 
 import java.util.List;
 
@@ -13,7 +13,6 @@ import java.util.List;
 public interface UserService extends BaseService<UserDO> {
     List<UserDO> getUserList();
 
-    PageVO<UserDO> getUserListByPage(UserQuery query);
+    PageVO<UserDO> getUserListByPage(PageQuery query);
 
-    UserDO selectById(int userId);
 }
