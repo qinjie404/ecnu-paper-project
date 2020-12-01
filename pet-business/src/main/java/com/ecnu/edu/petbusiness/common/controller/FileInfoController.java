@@ -1,10 +1,12 @@
 package com.ecnu.edu.petbusiness.common.controller;
 
 import com.ecnu.edu.petapibase.base.entity.CommonRes;
+import com.ecnu.edu.petapibase.common.domain.FileInfoDO;
 import com.ecnu.edu.petbusiness.common.service.FileInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.omg.CORBA.COMM_FAILURE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 
@@ -57,5 +60,12 @@ public class FileInfoController {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
 
         return null;
+    }
+
+    @PostMapping("/selectById")
+    public CommonRes<List<FileInfoDO>> selectById() {
+        List<FileInfoDO> fileInfoDO = fileInfoService.selectAll();
+        return CommonRes.getCommonRes(CommonRes.SUCCESS_STATUS, fileInfoDO);
+
     }
 }

@@ -1,6 +1,7 @@
 package com.ecnu.edu.petsso.service;
 
 import com.ecnu.edu.petapibase.base.entity.PageVO;
+import com.ecnu.edu.petapibase.common.query.PageQuery;
 import com.ecnu.edu.petapibase.user.domain.UserDO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,5 +25,5 @@ public interface UserRemoteService {
      * @date 2020/9/30
      **/
     @PostMapping("/user/listByPage")
-    PageVO<UserDO> getUserListByPage(@RequestBody UserQuery query);
+    PageVO<UserDO> getUserListByPage(@RequestBody PageQuery query);
 }

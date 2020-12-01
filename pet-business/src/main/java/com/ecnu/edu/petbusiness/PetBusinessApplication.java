@@ -9,8 +9,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 /**
  * @author 13862
  */
-@SpringBootApplication(scanBasePackages = "com.ecnu.edu.petbusiness")
-@EnableFeignClients(basePackages = "com.ecnu.edu.petbusiness.*.service")
+@SpringBootApplication(scanBasePackages = {"com.ecnu.edu.petbusiness"})
+@EnableFeignClients(basePackages = "com.ecnu.edu.petbusiness.remote.service")
 @MapperScan(basePackages = "com.ecnu.edu.petbusiness.*.dao")
 @EnableSwagger2Doc
 public class PetBusinessApplication {
