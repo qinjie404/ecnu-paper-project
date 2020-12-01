@@ -85,10 +85,18 @@
             <version>${pagehelper-spring-boot.version}</version>
         </dependency>
 
+        <!--mybatis mapper-->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper</artifactId>
             <version>${mapper.version}</version>
+        </dependency>
+
+        <!--hutool-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 
