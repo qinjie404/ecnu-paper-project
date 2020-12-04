@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.omg.CORBA.COMM_FAILURE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Map;
 
 
@@ -44,45 +42,51 @@ public class FileInfoController {
 
     @PostMapping("/upload")
     public CommonRes upload(HttpServletRequest request) {
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        Integer targetId = null;
-        String targetType = null;
-        for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
-            String key = entry.getKey();
-            if (StringUtils.equalsIgnoreCase(PARAM_TARGET_ID, key)) {
-                targetId = NumberUtils.toInt(entry.getValue()[0]);
-            } else if (StringUtils.equalsIgnoreCase(PARAM_TARGET_TYPE, key)) {
-                targetType = entry.getValue()[0];
+        try {
+            Map<String, String[]> parameterMap = request.getParameterMap();
+            Integer targetId = null;
+            String targetType = null;
+            for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+                String key = entry.getKey();
+                if (StringUtils.equalsIgnoreCase(PARAM_TARGET_ID, key)) {
+                    targetId = NumberUtils.toInt(entry.getValue()[0]);
+                } else if (StringUtils.equalsIgnoreCase(PARAM_TARGET_TYPE, key)) {
+                    targetType = entry.getValue()[0];
+                }
             }
-        }
-        if (StringUtils.isBlank(targetType)) {
-            return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "目标类型不能为空");
-        }
-        log.info("targetId:[{}],targetType:[{}]", targetId, targetType);
-        // 创建一个多部分文件解析器
-        CommonsMultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
-        // 判断是否有文件数据
-        if (!resolver.isMultipart(request)) {
-            return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "未找到数据文件");
-    }
-        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        MultipartFile file = multipartRequest.getFile("file");
-        if (file != null && !file.isEmpty() && StringUtils.isNotBlank(file.getOriginalFilename())) {
-            String suffix = StringUtils.substringAfterLast(file.getOriginalFilename(), ".");
-            log.info("附件上传，文件名称：[{}],文件类型：[{}]",file.getOriginalFilename(),suffix);
-            if(!ArrayUtils.contains(FILE_TYPE,suffix)){
-                return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "文件类型不符");
+            if (StringUtils.isBlank(targetType)) {
+                return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "目标类型不能为空");
             }
-
+            log.info("targetId:[{}],targetType:[{}]", targetId, targetType);
+            // 创建一个多部分文件解析器
+            CommonsMultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+            // 判断是否有文件数据
+            if (!resolver.isMultipart(request)) {
+                return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "未找到数据文件");
+            }
+            MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+            MultipartFile file = multipartRequest.getFile("file");
+            if (file != null && !file.isEmpty() && StringUtils.isNotBlank(file.getOriginalFilename())) {
+                String suffix = StringUtils.substringAfterLast(file.getOriginalFilename(), ".");
+                log.info("附件上传，文件名称：[{}],文件类型：[{}]", file.getOriginalFilename(), suffix);
+                if (!ArrayUtils.contains(FILE_TYPE, suffix)) {
+                    return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "文件类型不符");
+                }
+                FileInfoDO fileInfoDO = new FileInfoDO();
+                fileInfoDO.setTargetId(targetId);
+                fileInfoDO.setTargetType(targetType);
+                int fileId = fileInfoService.upLoadFile(fileInfoDO, file);
+                if (NumberUtils.compare(0, fileId) == 0) {
+                    return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "文件上传失败");
+                }
+                return CommonRes.getCommonRes(CommonRes.SUCCESS_STATUS,"文件上传成功" ,fileId);
+            } else {
+                return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "file不能为空");
+            }
+        } catch (Exception e) {
+            log.error("文件上传接口异常：" + e);
+            return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "文件上传接口异常");
         }
-
-        return null;
     }
 
-    @PostMapping("/selectById")
-    public CommonRes<List<FileInfoDO>> selectById() {
-        List<FileInfoDO> fileInfoDO = fileInfoService.selectAll();
-        return CommonRes.getCommonRes(CommonRes.SUCCESS_STATUS, fileInfoDO);
-
-    }
 }

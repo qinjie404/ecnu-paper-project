@@ -2,6 +2,10 @@ spring:
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 
 mybatis:
   #开启mybatis驼峰命名
@@ -25,6 +29,12 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
 
+# 文件路径
+file:
+  root-path: E:\pet\file\
+  upload-dir: upload
+
+# 微服务名称
 pet:
   service:
     name:
