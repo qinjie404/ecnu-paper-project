@@ -34,6 +34,17 @@ file:
   root-path: E:\pet\file\
   upload-dir: upload
 
+#swagger
+swagger:
+  base-package: com.ecnu.edu
+
+#控制台打印sql
+logging:
+  level:
+    com:
+      ecnu:
+        edu: debug
+
 # 微服务名称
 pet:
   service:

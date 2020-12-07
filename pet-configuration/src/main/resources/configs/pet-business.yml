@@ -20,18 +20,6 @@ spring:
 server:
   port: 8011
 
-#控制台打印sql
-logging:
-  level:
-    com:
-      ecnu:
-        edu:
-          petbusiness: debug
-
-#swagger
-swagger:
-  base-package: com.ecnu.edu.petbusiness
-
 # Eureka相关配置
 eureka:
   client:

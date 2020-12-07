@@ -20,19 +20,6 @@ spring:
 server:
   port: 8012
 
-#控制台打印sql
-logging:
-  level:
-    com:
-      ecnu:
-        edu:
-          petsso:
-            dao: debug
-
-#swagger
-swagger:
-  base-package: com.ecnu.edu.petsso.controller
-
 # Eureka相关配置
 eureka:
   client:
