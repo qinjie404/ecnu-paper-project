@@ -1,5 +1,6 @@
 package com.ecnu.edu.petbusiness.common.controller;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.ecnu.edu.petapibase.base.entity.CommonRes;
 import com.ecnu.edu.petapibase.common.domain.FileInfoDO;
 import com.ecnu.edu.petbusiness.common.service.FileInfoService;
@@ -16,6 +17,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 
@@ -79,7 +83,7 @@ public class FileInfoController {
                 if (NumberUtils.compare(0, fileId) == 0) {
                     return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "文件上传失败");
                 }
-                return CommonRes.getCommonRes(CommonRes.SUCCESS_STATUS,"文件上传成功" ,fileId);
+                return CommonRes.getCommonRes(CommonRes.SUCCESS_STATUS, "文件上传成功", fileId);
             } else {
                 return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "file不能为空");
             }
@@ -89,4 +93,50 @@ public class FileInfoController {
         }
     }
 
+    @PostMapping("/uploadMulti")
+    public CommonRes uploadMulti(HttpServletRequest request) {
+        try {
+            Map<String, String[]> parameterMap = request.getParameterMap();
+            Integer targetId = null;
+            String targetType = null;
+            for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+                String key = entry.getKey();
+                if (StringUtils.equalsIgnoreCase(PARAM_TARGET_ID, key)) {
+                    targetId = NumberUtils.toInt(entry.getValue()[0]);
+                } else if (StringUtils.equalsIgnoreCase(PARAM_TARGET_TYPE, key)) {
+                    targetType = entry.getValue()[0];
+                }
+            }
+            if (StringUtils.isBlank(targetType)) {
+                return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "目标类型不能为空");
+            }
+            log.info("targetId:[{}],targetType:[{}]", targetId, targetType);
+            // 创建一个多部分文件解析器
+            CommonsMultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+            // 判断是否有文件数据
+            if (!resolver.isMultipart(request)) {
+                return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "未找到数据文件");
+            }
+            MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+            Iterator<String> fileNames = multipartRequest.getFileNames();
+            List<Integer> fileIds = new ArrayList<>();
+            while (fileNames.hasNext()) {
+                List<MultipartFile> files = multipartRequest.getFiles(fileNames.next());
+                if (CollectionUtil.isNotEmpty(files)) {
+                    FileInfoDO fileInfoDO;
+                    for (MultipartFile file : files) {
+                        fileInfoDO = new FileInfoDO();
+                        fileInfoDO.setTargetId(targetId);
+                        fileInfoDO.setTargetType(targetType);
+                        int fileId = fileInfoService.upLoadFile(fileInfoDO, file);
+                        fileIds.add(fileId);
+                    }
+                }
+            }
+            return CommonRes.getCommonRes(CommonRes.SUCCESS_STATUS, fileIds);
+        } catch (Exception e) {
+            log.error("文件上传接口异常：" + e);
+            return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "文件上传接口异常");
+        }
+    }
 }

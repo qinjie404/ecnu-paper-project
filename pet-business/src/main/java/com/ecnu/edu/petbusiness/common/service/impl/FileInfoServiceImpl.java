@@ -50,6 +50,7 @@ public class FileInfoServiceImpl extends BaseServiceImpl<FileInfoDO> implements 
             String filePath = getFilePath(file);
             fileInfoDO.setFilePath(filePath);
             fileInfoDO.setStatus(0);
+            // todo: setCreateId、setUpdateId
             saveEntity(fileInfoDO);
             return fileInfoDO.getFileId();
         } catch (Exception e) {

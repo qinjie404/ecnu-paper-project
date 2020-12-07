@@ -30,7 +30,7 @@ logging:
 
 #swagger
 swagger:
-  base-package: com.ecnu.edu.petbusiness.controller
+  base-package: com.ecnu.edu.petbusiness
 
 # Eureka相关配置
 eureka:
