@@ -34,11 +34,10 @@
     <modules>
         <module>pet-configuration</module>
         <module>pet-registry</module>
-        <module>pet-user</module>
         <module>pet-gateway</module>
         <module>pet-api-base</module>
         <module>pet-generator</module>
-        <module>pet-sso</module>
+        <module>pet-auth</module>
         <module>pet-business</module>
     </modules>
 

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: pet-auth
+    instance_id: localhost
+  datasource:
+    #Mysql
+    url: jdbc:mysql://localhost:3306/pet?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    tomcat:
+      max-active: 20
+      initial-size: 1
+      max-wait: 60000
+    dbcp2:
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+
+server:
+  port: 8012
+
+# Eureka相关配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 60  # 发呆时间，即服务续约到期时间（缺省为90s）
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id}:${server.port}
