@@ -42,7 +42,7 @@ public class UserNotesController {
             PageVO<CommunityNotesVO> pageVO = userNotesService.getUserNotes(query);
             return getCommonRes(CommonRes.SUCCESS_STATUS, pageVO);
         } catch (Exception e) {
-            log.error("获取社区用户笔记接口异常：" + e);
+            log.error("获取社区用户笔记接口异常：" , e);
             return getCommonRes(CommonRes.FAIL_STATUS, "获取社区用户笔记接口异常");
         }
     }
