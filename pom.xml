@@ -28,6 +28,7 @@
         <swagger-spring-boot-starter.version>1.9.0.RELEASE</swagger-spring-boot-starter.version>
         <mapper.version>4.1.5</mapper.version>
         <hutool.version>5.5.1</hutool.version>
+        <jjwt.version>0.9.1</jjwt.version>
     </properties>
 
     <!--子模块 -->

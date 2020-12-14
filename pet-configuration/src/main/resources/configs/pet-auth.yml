@@ -19,6 +19,10 @@ spring:
 
 server:
   port: 8012
+# jwt
+jwt:
+  header:
+    
 
 # Eureka相关配置
 eureka:

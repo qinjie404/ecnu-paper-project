@@ -89,6 +89,12 @@
             <artifactId>mapper</artifactId>
             <version>${mapper.version}</version>
         </dependency>
+        <!-- jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
     </dependencies>
 
 
