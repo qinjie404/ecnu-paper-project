@@ -16,5 +16,25 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "jwt")
 public class JwtProperties {
 
+    /**
+     * 签发者
+     */
+    private String issuer;
+    /**
+     * 过期时间(ms)
+     */
+    private Long expiration;
+    /**
+     * 记住我过期时间(ms)
+     */
+    private Long expirationRemember;
+    /**
+     * 盐
+     */
+    private String secret;
+    /**
+     * jwt id
+     */
+    private String id;
 
 }
