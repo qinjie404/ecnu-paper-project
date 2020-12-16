@@ -1,7 +1,7 @@
 package com.ecnu.edu.petauth;
 
 import com.ecnu.edu.petauth.feign.service.UserRemoteService;
-import com.ecnu.edu.petauth.jwt.JwtUtil;
+import com.ecnu.edu.petauth.jwt.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

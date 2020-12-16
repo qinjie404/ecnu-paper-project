@@ -1,5 +1,6 @@
-package com.ecnu.edu.petauth.jwt;
+package com.ecnu.edu.petauth.jwt.util;
 
+import com.ecnu.edu.petauth.jwt.config.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -23,8 +24,8 @@ import java.util.Map;
 @Component
 public class JwtUtil {
 
-    private static final String TOKEN_HEADER = "Authorization";
-    private static final String TOKEN_PREFIX = "Bearer ";
+    public static final String TOKEN_HEADER = "Authorization";
+    public static final String TOKEN_PREFIX = "Bearer ";
 
     @Autowired
     private JwtProperties jwtProperties;
