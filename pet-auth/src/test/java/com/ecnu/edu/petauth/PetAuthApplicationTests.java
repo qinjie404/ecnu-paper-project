@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootTest
 @Slf4j
@@ -39,5 +40,11 @@ class PetAuthApplicationTests {
     void testIsExpiration() {
         boolean isExpiration = jwtUtil.isExpiration(token);
         log.info("isExpiration:{}",isExpiration);
+    }
+
+    @Test
+    void testBCryptPasswordEncoder() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        log.info("isExpiration:{}",bCryptPasswordEncoder.encode("123"));
     }
 }

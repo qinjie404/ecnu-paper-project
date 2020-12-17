@@ -38,4 +38,12 @@ public class UserServiceImpl extends BaseServiceImpl<UserDO> implements UserServ
         pageVO.setTotalNum(page.getTotal());
         return pageVO;
     }
+
+    @Override
+    public UserDO findByUserName(String userName) {
+        UserDO userDO=new UserDO();
+        userDO.setUserName(userName);
+        userDO.setStatus(1);
+        return userDao.selectOne(userDO);
+    }
 }

@@ -4,11 +4,11 @@ import com.ecnu.edu.petapibase.common.vo.LoginUser;
 import com.ecnu.edu.petauth.jwt.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -29,11 +29,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private ThreadLocal<Boolean> rememberMe = new ThreadLocal<>();
     private AuthenticationManager authenticationManager;
-    @Autowired
     private JwtUtil jwtUtil;
 
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
         this.authenticationManager = authenticationManager;
+        this.jwtUtil = jwtUtil;
         super.setFilterProcessesUrl("/login");
     }
 
@@ -71,15 +71,15 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      */
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        super.successfulAuthentication(request, response, chain, authResult);
-        LoginUser loginUser = (LoginUser) authResult.getPrincipal();
+        UserDetails loginUser = (UserDetails) authResult.getPrincipal();
         log.info("loginUser:{}", loginUser);
         boolean isRemember = rememberMe.get();
-        String token = jwtUtil.createJwtToken(loginUser.getUserName(), isRemember);
+        String token = jwtUtil.createJwtToken(loginUser.getUsername(), isRemember);
         // 返回创建成功的token
         // 但是这里创建的token只是单纯的token
         // 按照jwt的规定，最后请求的时候应该是 `Bearer token`
         response.setHeader("token", JwtUtil.TOKEN_PREFIX + token);
+        response.getWriter().write("登录成功，当前用户" +loginUser.getUsername());
     }
 
     /**
@@ -93,7 +93,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      */
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        super.unsuccessfulAuthentication(request, response, failed);
         log.error("登录失败", failed);
         response.getWriter().write("登录失败: " + failed);
     }

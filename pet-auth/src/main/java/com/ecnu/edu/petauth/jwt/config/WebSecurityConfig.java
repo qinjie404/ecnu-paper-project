@@ -1,7 +1,11 @@
 package com.ecnu.edu.petauth.jwt.config;
 
+import com.ecnu.edu.petauth.jwt.filter.JWTAuthorizationFilter;
 import com.ecnu.edu.petauth.jwt.filter.JwtAuthenticationFilter;
+import com.ecnu.edu.petauth.jwt.util.JwtUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -24,6 +28,8 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private JwtUtil jwtUtil;
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -33,15 +39,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 // 静态资源访问无需认证
-                .antMatchers("/image/**").permitAll()
+//                .antMatchers("/image/**").permitAll()
                 // admin开头的请求，需要admin权限
 //                .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 // 需登陆才能访问的url
-                .antMatchers("/notes/**").hasRole("USER")
+                .antMatchers(HttpMethod.POST,"/pet-business/notes/**").hasRole("abc")
                 //默认其它的请求都需要认证，这里一定要添加
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(),jwtUtil))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager(),jwtUtil))
                 // CRSF禁用，因为不使用session
                 .csrf().disable()
                 // 禁用session

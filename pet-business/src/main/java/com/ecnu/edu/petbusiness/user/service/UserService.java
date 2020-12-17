@@ -15,4 +15,5 @@ public interface UserService extends BaseService<UserDO> {
 
     PageVO<UserDO> getUserListByPage(PageQuery query);
 
+    UserDO findByUserName(String userName);
 }
