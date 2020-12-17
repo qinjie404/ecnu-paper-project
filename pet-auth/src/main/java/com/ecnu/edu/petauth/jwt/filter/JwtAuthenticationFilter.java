@@ -80,6 +80,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         // 按照jwt的规定，最后请求的时候应该是 `Bearer token`
         response.setHeader("token", JwtUtil.TOKEN_PREFIX + token);
         response.getWriter().write("登录成功，当前用户" +loginUser.getUsername());
+//        chain.doFilter(request,response);
     }
 
     /**

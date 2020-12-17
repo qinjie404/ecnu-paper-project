@@ -16,11 +16,11 @@ import java.io.IOException;
 /**
  * Created by echisan on 2018/6/23
  */
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
     private JwtUtil jwtUtil;
 
-    public JWTAuthorizationFilter(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
         super(authenticationManager);
         this.jwtUtil = jwtUtil;
     }

@@ -1,6 +1,6 @@
 package com.ecnu.edu.petauth.jwt.config;
 
-import com.ecnu.edu.petauth.jwt.filter.JWTAuthorizationFilter;
+import com.ecnu.edu.petauth.jwt.filter.JwtAuthorizationFilter;
 import com.ecnu.edu.petauth.jwt.filter.JwtAuthenticationFilter;
 import com.ecnu.edu.petauth.jwt.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(),jwtUtil))
-                .addFilter(new JWTAuthorizationFilter(authenticationManager(),jwtUtil))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(),jwtUtil))
                 // CRSF禁用，因为不使用session
                 .csrf().disable()
                 // 禁用session
