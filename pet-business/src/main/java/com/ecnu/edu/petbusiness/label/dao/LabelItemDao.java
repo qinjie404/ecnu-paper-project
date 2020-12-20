@@ -1,11 +1,11 @@
-package com.ecnu.edu.petbusiness.common.service;
+package com.ecnu.edu.petbusiness.label.dao;
 
-
-import com.ecnu.edu.petapibase.base.service.BaseService;
+import com.ecnu.edu.petapibase.base.dao.BaseDao;
 import com.ecnu.edu.petapibase.common.domain.LabelItemDO;
+import org.springframework.stereotype.Repository;
 
 /**
-* Service - 表现子类表
+* Mapper - 表现子类表
 * ============================================================================
 * 版权所有 2020 。
 *
@@ -13,7 +13,7 @@ import com.ecnu.edu.petapibase.common.domain.LabelItemDO;
 * @version 1.0 2020-11-26
 * ============================================================================
 */
-public interface LabelItemService extends BaseService<LabelItemDO> {
-
+@Repository
+public interface LabelItemDao extends BaseDao<LabelItemDO> {
 
 }

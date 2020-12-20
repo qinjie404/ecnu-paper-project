@@ -1,4 +1,4 @@
-package com.ecnu.edu.petbusiness.common.controller;
+package com.ecnu.edu.petbusiness.label.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;

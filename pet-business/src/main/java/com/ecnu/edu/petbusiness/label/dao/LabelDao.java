@@ -1,4 +1,4 @@
-package com.ecnu.edu.petbusiness.common.dao;
+package com.ecnu.edu.petbusiness.label.dao;
 
 import com.ecnu.edu.petapibase.base.dao.BaseDao;
 import com.ecnu.edu.petapibase.common.domain.LabelDO;

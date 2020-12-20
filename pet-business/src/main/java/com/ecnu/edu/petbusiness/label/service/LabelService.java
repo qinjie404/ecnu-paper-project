@@ -1,4 +1,4 @@
-package com.ecnu.edu.petbusiness.common.service;
+package com.ecnu.edu.petbusiness.label.service;
 
 
 import com.ecnu.edu.petapibase.base.service.BaseService;
