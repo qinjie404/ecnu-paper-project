@@ -1,9 +1,12 @@
 package com.ecnu.edu.petgateway.jwt.filter;
 
-import com.ecnu.edu.petapibase.common.vo.LoginUser;
+import com.ecnu.edu.petapibase.base.entity.CommonRes;
+import com.ecnu.edu.petapibase.user.domain.UserDO;
 import com.ecnu.edu.petgateway.jwt.util.JwtUtil;
+import com.ecnu.edu.petgateway.jwt.util.ResponseUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * 用户登录过滤器
@@ -27,7 +31,6 @@ import java.io.IOException;
 @Slf4j
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private ThreadLocal<Boolean> rememberMe = new ThreadLocal<>();
     private AuthenticationManager authenticationManager;
     private JwtUtil jwtUtil;
 
@@ -38,6 +41,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     /**
+     * 登录认证
+     *
      * @param request
      * @param response
      * @return
@@ -45,13 +50,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        LoginUser loginUser;
+        UserDO loginUser;
         try {
             // 从输入流中获取到登录的信息
-            loginUser = new ObjectMapper().readValue(request.getInputStream(), LoginUser.class);
-            rememberMe.set(loginUser.getRememberMe());
+            loginUser = new ObjectMapper().readValue(request.getInputStream(), UserDO.class);
+            // 调用UserDetailsService的loadUserByUsername方法查询数据库用户
             return authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginUser.getUserName(), loginUser.getPassword())
+                    new UsernamePasswordAuthenticationToken(loginUser.getUserName(), loginUser.getPassword(), new ArrayList<>())
             );
         } catch (IOException e) {
             log.error("io异常", e);
@@ -60,7 +65,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     /**
-     * 验证成功
+     * 认证成功调用
      *
      * @param request
      * @param response
@@ -72,19 +77,14 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         UserDetails loginUser = (UserDetails) authResult.getPrincipal();
-        log.info("loginUser:{}", loginUser);
-        boolean isRemember = rememberMe.get();
-        String token = jwtUtil.createJwtToken(loginUser.getUsername(), isRemember);
-        // 返回创建成功的token
-        // 但是这里创建的token只是单纯的token
-        // 按照jwt的规定，最后请求的时候应该是 `Bearer token`
-        response.setHeader("token", JwtUtil.TOKEN_PREFIX + token);
-        response.getWriter().write("登录成功，当前用户" +loginUser.getUsername());
-//        chain.doFilter(request,response);
+        log.info("认证成功。当前登陆人:{}", loginUser);
+        // 生成token
+        String token = jwtUtil.createJwtToken(loginUser.getUsername());
+        ResponseUtil.getResponse(response, HttpStatus.OK, CommonRes.SUCCESS_STATUS, "认证成功", token);
     }
 
     /**
-     * 验证失败
+     * 认证失败调用
      *
      * @param request
      * @param response
@@ -94,7 +94,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      */
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        log.error("登录失败", failed);
-        response.getWriter().write("登录失败: " + failed);
+        log.error("认证失败", failed);
+        ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, CommonRes.FAIL_STATUS, "认证失败", failed.getMessage());
     }
 }

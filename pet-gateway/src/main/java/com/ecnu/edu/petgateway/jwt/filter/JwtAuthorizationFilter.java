@@ -1,7 +1,10 @@
 package com.ecnu.edu.petgateway.jwt.filter;
 
+import com.ecnu.edu.petapibase.base.entity.CommonRes;
 import com.ecnu.edu.petgateway.jwt.util.JwtUtil;
+import com.ecnu.edu.petgateway.jwt.util.ResponseUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,7 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by echisan on 2018/6/23
+ * 授权过滤器
+ *
+ * @author Leo Qin
  */
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
@@ -29,47 +34,56 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         this.jwtUtil = jwtUtil;
     }
 
+    /**
+     * 授权认证入口
+     *
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain chain) throws IOException, ServletException {
 
-        String tokenHeader = request.getHeader(JwtUtil.TOKEN_HEADER);
-        // 如果请求头中没有Authorization信息则直接放行了
-        if (tokenHeader == null || !tokenHeader.startsWith(JwtUtil.TOKEN_PREFIX)) {
-            chain.doFilter(request, response);
+        String token = request.getHeader("token");
+        // 如果请求头中没有token信息则返回失败信息
+        if (token == null) {
+            ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, CommonRes.FAIL_STATUS, "授权失败", "获取token失败");
             return;
         }
         // 如果请求头中有token，则进行解析，并且设置认证信息
         try {
-            SecurityContextHolder.getContext().setAuthentication(getAuthentication(tokenHeader));
+            SecurityContextHolder.getContext().setAuthentication(getAuthentication(token));
         } catch (Exception e) {
+            logger.error("授权失败", e);
             //返回json形式的错误信息
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("application/json; charset=utf-8");
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            String reason = "统一处理，原因：" + e.getMessage();
-            response.getWriter().write(new ObjectMapper().writeValueAsString(reason));
-            response.getWriter().flush();
+            ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, CommonRes.FAIL_STATUS, "授权失败", e.getMessage());
             return;
         }
-        chain.doFilter(request,response);
+        chain.doFilter(request, response);
     }
 
-    // 这里从token中获取用户信息并新建一个token
-    private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) throws Exception {
-        String token = tokenHeader.replace(JwtUtil.TOKEN_PREFIX, "");
+    /**
+     * 这里从token中获取用户信息并新建一个token
+     *
+     * @param token
+     * @return
+     * @throws Exception
+     */
+    private UsernamePasswordAuthenticationToken getAuthentication(String token) throws Exception {
         boolean expiration = jwtUtil.isExpiration(token);
         if (expiration) {
             throw new Exception("token超时了");
         } else {
             String username = jwtUtil.getUserName(token);
-//            String role = jwtUtil.get(token);
             if (username != null) {
+                //todo: 从redis获取角色权限信息
                 List<GrantedAuthority> authorityList = new ArrayList<>();
                 authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
-                return new UsernamePasswordAuthenticationToken(username, null,authorityList)
-                ;
+                return new UsernamePasswordAuthenticationToken(username, null, authorityList);
             }
         }
         return null;

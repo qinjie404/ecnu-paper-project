@@ -2,6 +2,7 @@ package com.ecnu.edu.petgateway.jwt.config;
 
 import com.ecnu.edu.petgateway.jwt.filter.JwtAuthorizationFilter;
 import com.ecnu.edu.petgateway.jwt.filter.JwtAuthenticationFilter;
+import com.ecnu.edu.petgateway.jwt.handler.JwtLogOutHandler;
 import com.ecnu.edu.petgateway.jwt.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -49,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(),jwtUtil))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(),jwtUtil))
+                .logout().logoutUrl("/logout").addLogoutHandler(new JwtLogOutHandler(jwtUtil)).and()
                 // CRSF禁用，因为不使用session
                 .csrf().disable()
                 // 禁用session
@@ -59,15 +61,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 // 添加header设置，支持跨域和ajax请求
-                .headers().addHeaderWriter(new StaticHeadersWriter(Arrays.asList(
-                new Header("Access-control-Allow-Origin","*"),
-                new Header("Access-Control-Expose-Headers","Authorization"))))
-                .and()
-                //使用默认的logoutFilter
-                .logout()
-                //logout成功后返回200
-                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
-                .and()
+//                .headers().addHeaderWriter(new StaticHeadersWriter(Arrays.asList(
+//                new Header("Access-control-Allow-Origin","*"),
+//                new Header("Access-Control-Expose-Headers","Authorization"))))
+//                .and()
                 .sessionManagement().disable();
     }
 

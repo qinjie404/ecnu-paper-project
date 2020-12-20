@@ -19,9 +19,16 @@ public class JwtUserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRemoteService userRemoteService;
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         UserDO userDO = userRemoteService.findByUserName(s);
-        return User.builder().username(s).password(userDO.getPassword()).roles("ROLE_USER").build();
+        if (userDO == null) {
+            return null;
+        }
+        // todo:查询权限列表
+
+
+        return User.builder().username(s).password(userDO.getPassword()).roles("USER").build();
     }
 }

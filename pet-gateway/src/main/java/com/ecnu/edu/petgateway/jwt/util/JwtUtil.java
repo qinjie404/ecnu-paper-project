@@ -24,8 +24,8 @@ import java.util.Map;
 @Component
 public class JwtUtil {
 
-    public static final String TOKEN_HEADER = "Authorization";
-    public static final String TOKEN_PREFIX = "Bearer ";
+//    public static final String TOKEN_HEADER = "Authorization";
+//    public static final String TOKEN_PREFIX = "Bearer ";
 
     @Autowired
     private JwtProperties jwtProperties;
@@ -34,11 +34,9 @@ public class JwtUtil {
      * 生成token
      *
      * @param userName
-     * @param rememberMe
      * @return
      */
-    public String createJwtToken(String userName, boolean rememberMe) {
-        long expiration = rememberMe ? jwtProperties.getExpirationRemember() : jwtProperties.getExpiration();
+    public String createJwtToken(String userName) {
         Date date = new Date();
         Map<String, Object> headerMap = new HashMap<>(4);
         // 设置token类型
@@ -48,7 +46,7 @@ public class JwtUtil {
                 .setId(jwtProperties.getId())
                 .setSubject(userName)
                 .setIssuedAt(date)
-                .setExpiration(new Date(date.getTime() + expiration))
+                .setExpiration(new Date(date.getTime() + jwtProperties.getExpiration()))
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecret())
                 .compact();
         return token;
