@@ -38,7 +38,6 @@
         <module>pet-gateway</module>
         <module>pet-api-base</module>
         <module>pet-generator</module>
-        <module>pet-auth</module>
         <module>pet-business</module>
     </modules>
 

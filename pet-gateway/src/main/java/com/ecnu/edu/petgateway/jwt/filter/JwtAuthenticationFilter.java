@@ -1,7 +1,7 @@
-package com.ecnu.edu.petauth.jwt.filter;
+package com.ecnu.edu.petgateway.jwt.filter;
 
 import com.ecnu.edu.petapibase.common.vo.LoginUser;
-import com.ecnu.edu.petauth.jwt.util.JwtUtil;
+import com.ecnu.edu.petgateway.jwt.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;

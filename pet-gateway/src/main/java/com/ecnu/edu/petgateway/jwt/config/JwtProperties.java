@@ -1,4 +1,4 @@
-package com.ecnu.edu.petauth.jwt.config;
+package com.ecnu.edu.petgateway.jwt.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

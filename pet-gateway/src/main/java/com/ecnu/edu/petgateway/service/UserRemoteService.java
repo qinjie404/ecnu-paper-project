@@ -1,4 +1,4 @@
-package com.ecnu.edu.petauth.feign.service;
+package com.ecnu.edu.petgateway.service;
 
 import com.ecnu.edu.petapibase.user.domain.UserDO;
 import org.springframework.cloud.openfeign.FeignClient;

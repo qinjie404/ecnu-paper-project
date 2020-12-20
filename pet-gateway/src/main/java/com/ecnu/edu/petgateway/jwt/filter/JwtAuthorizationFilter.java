@@ -1,9 +1,11 @@
-package com.ecnu.edu.petauth.jwt.filter;
+package com.ecnu.edu.petgateway.jwt.filter;
 
-import com.ecnu.edu.petauth.jwt.util.JwtUtil;
+import com.ecnu.edu.petgateway.jwt.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -12,6 +14,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by echisan on 2018/6/23
@@ -49,7 +53,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             response.getWriter().flush();
             return;
         }
-        super.doFilterInternal(request, response, chain);
+        chain.doFilter(request,response);
     }
 
     // 这里从token中获取用户信息并新建一个token
@@ -62,7 +66,9 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             String username = jwtUtil.getUserName(token);
 //            String role = jwtUtil.get(token);
             if (username != null) {
-                return new UsernamePasswordAuthenticationToken(username, null)
+                List<GrantedAuthority> authorityList = new ArrayList<>();
+                authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
+                return new UsernamePasswordAuthenticationToken(username, null,authorityList)
                 ;
             }
         }

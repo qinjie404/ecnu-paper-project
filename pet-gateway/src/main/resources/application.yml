@@ -5,20 +5,6 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: ${pet.service.pet-auth}
-          uri: lb://${pet.service.pet-auth}
-          predicates:
-            - Path=/${pet.service.pet-auth}/**
-          filters:
-            - name: RequestRateLimiter
-              args:
-                # 使用SpEL按名称引用bean
-                #key-resolver: '#{@remoteAddrKeyResolver}'
-                # 允许用户每秒处理多少个请求
-                redis-rate-limiter.replenishRate: 10
-                # 允许在一秒钟内完成的最大请求数
-                redis-rate-limiter.burstCapacity: 20
-            - StripPrefix=1
         - id: ${pet.service.pet-business}
           uri: lb://${pet.service.pet-business}
           predicates:
@@ -36,5 +22,4 @@ spring:
 # 需要配置的服务名
 pet:
   service:
-    pet-auth: auth
     pet-business : business

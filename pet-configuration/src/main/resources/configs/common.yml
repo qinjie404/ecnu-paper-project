@@ -49,5 +49,4 @@ logging:
 pet:
   service:
     name:
-      pet-sso: pet-sso
       pet-business: pet-business

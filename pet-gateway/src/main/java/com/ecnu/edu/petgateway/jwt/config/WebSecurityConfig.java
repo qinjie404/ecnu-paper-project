@@ -1,11 +1,10 @@
-package com.ecnu.edu.petauth.jwt.config;
+package com.ecnu.edu.petgateway.jwt.config;
 
-import com.ecnu.edu.petauth.jwt.filter.JwtAuthorizationFilter;
-import com.ecnu.edu.petauth.jwt.filter.JwtAuthenticationFilter;
-import com.ecnu.edu.petauth.jwt.util.JwtUtil;
+import com.ecnu.edu.petgateway.jwt.filter.JwtAuthorizationFilter;
+import com.ecnu.edu.petgateway.jwt.filter.JwtAuthenticationFilter;
+import com.ecnu.edu.petgateway.jwt.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -43,7 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // admin开头的请求，需要admin权限
 //                .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 // 需登陆才能访问的url
-                .antMatchers(HttpMethod.POST,"/pet-business/notes/**").hasRole("abc")
+                .antMatchers("/login").permitAll()
+                .antMatchers("/notes/**").authenticated()
                 //默认其它的请求都需要认证，这里一定要添加
                 .anyRequest().authenticated()
                 .and()

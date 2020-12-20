@@ -1,7 +1,7 @@
-package com.ecnu.edu.petauth.jwt.service;
+package com.ecnu.edu.petgateway.jwt.service;
 
 import com.ecnu.edu.petapibase.user.domain.UserDO;
-import com.ecnu.edu.petauth.feign.service.UserRemoteService;
+import com.ecnu.edu.petgateway.service.UserRemoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +22,6 @@ public class JwtUserDetailServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         UserDO userDO = userRemoteService.findByUserName(s);
-        return User.builder().username(s).password(userDO.getPassword()).roles("USER").build();
+        return User.builder().username(s).password(userDO.getPassword()).roles("ROLE_USER").build();
     }
 }

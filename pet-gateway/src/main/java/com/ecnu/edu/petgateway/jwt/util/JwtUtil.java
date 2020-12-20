@@ -1,6 +1,6 @@
-package com.ecnu.edu.petauth.jwt.util;
+package com.ecnu.edu.petgateway.jwt.util;
 
-import com.ecnu.edu.petauth.jwt.config.JwtProperties;
+import com.ecnu.edu.petgateway.jwt.config.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
