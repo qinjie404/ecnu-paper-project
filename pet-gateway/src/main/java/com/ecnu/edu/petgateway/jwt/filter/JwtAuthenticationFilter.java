@@ -95,6 +95,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         log.error("认证失败", failed);
-        ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, CommonRes.FAIL_STATUS, "认证失败", failed.getMessage());
+        ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, CommonRes.FAIL_STATUS, "认证失败", "用户名或密码错误");
     }
 }

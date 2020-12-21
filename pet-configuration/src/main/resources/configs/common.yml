@@ -49,4 +49,4 @@ logging:
 pet:
   service:
     name:
-      pet-business: pet-business
+      pet-business: business

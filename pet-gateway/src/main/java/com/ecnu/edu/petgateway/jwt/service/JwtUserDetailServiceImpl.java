@@ -29,6 +29,6 @@ public class JwtUserDetailServiceImpl implements UserDetailsService {
         // todo:查询权限列表
 
 
-        return User.builder().username(s).password(userDO.getPassword()).roles("USER").build();
+        return User.builder().username(s).password(userDO.getPassword()).roles("ADMIN").build();
     }
 }

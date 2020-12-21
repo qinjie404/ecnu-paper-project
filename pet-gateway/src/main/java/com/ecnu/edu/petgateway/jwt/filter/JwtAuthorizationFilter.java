@@ -3,7 +3,6 @@ package com.ecnu.edu.petgateway.jwt.filter;
 import com.ecnu.edu.petapibase.base.entity.CommonRes;
 import com.ecnu.edu.petgateway.jwt.util.JwtUtil;
 import com.ecnu.edu.petgateway.jwt.util.ResponseUtil;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -48,7 +47,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws IOException, ServletException {
 
-        String token = request.getHeader("token");
+        String token = request.getHeader("Token");
         // 如果请求头中没有token信息则返回失败信息
         if (token == null) {
             ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, CommonRes.FAIL_STATUS, "授权失败", "获取token失败");
@@ -80,9 +79,9 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         } else {
             String username = jwtUtil.getUserName(token);
             if (username != null) {
-                //todo: 从redis获取角色权限信息
+                //todo: 从redis获取角色权限信息,角色前必须加ROLE_
                 List<GrantedAuthority> authorityList = new ArrayList<>();
-                authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
+                authorityList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
                 return new UsernamePasswordAuthenticationToken(username, null, authorityList);
             }
         }

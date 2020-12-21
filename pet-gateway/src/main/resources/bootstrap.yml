@@ -3,3 +3,26 @@ spring:
     config:
       name: pet-gateway,common #配置文件名称，多个通过逗号分隔
       uri: http://localhost:8000 #Config Server服务地址
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: ${pet.service.pet-business}
+          uri: lb://${pet.service.pet-business}
+          predicates:
+            - Path=/${pet.service.pet-business}/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                # 使用SpEL按名称引用bean
+                #key-resolver: '#{@remoteAddrKeyResolver}'
+                # 允许用户每秒处理多少个请求
+                redis-rate-limiter.replenishRate: 10
+                # 允许在一秒钟内完成的最大请求数
+                redis-rate-limiter.burstCapacity: 20
+            - StripPrefix=1
+# 需要配置的服务名
+pet:
+  service:
+    pet-business : business

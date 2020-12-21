@@ -27,7 +27,7 @@ public class JwtLogOutHandler implements LogoutHandler {
     @Override
     public void logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) {
         // 1.从header中获取token
-        String token = httpServletRequest.getHeader("token");
+        String token = httpServletRequest.getHeader("Token");
 
         // 2.若token不为空，则删除，从redis删除token
         if (StringUtils.isNotBlank(token)) {
