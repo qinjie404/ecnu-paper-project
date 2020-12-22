@@ -1,6 +1,6 @@
 spring:
   application:
-    name: business
+    name: pet-business
     instance_id: localhost
   datasource:
   #Mysql
