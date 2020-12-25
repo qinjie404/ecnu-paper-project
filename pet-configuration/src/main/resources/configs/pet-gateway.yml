@@ -41,9 +41,8 @@ hystrix:
 # jwt
 jwt:
   issuer: leoqin
-  # 30分钟
-#  expiration: 1800000
-  expiration: 300000
+  # 1天
+  expiration: 86400000
   # 7天
   expirationRemember: 604800000
   # salt

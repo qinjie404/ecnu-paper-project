@@ -3,18 +3,14 @@ spring:
     config:
       name: pet-gateway,common #配置文件名称，多个通过逗号分隔
       uri: http://localhost:8000 #Config Server服务地址
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        - id: ${pet.service.pet-business}
-          uri: lb://${pet.service.pet-business}
-          predicates:
-            - Path=/${pet.service.pet-business}/**
-          filters:
-            - StripPrefix=1
+
 # 需要配置的服务名
+zuul:
+  routes:
+    pet-business:
+      service-id: ${pet.service.pet-business}
+      path: /${pet.service.pet-business}/**
+
 pet:
   service:
     pet-business : pet-business

@@ -46,24 +46,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/business/notes/userNotes").hasRole("ADMIN")
-                //默认其它的请求都需要认证，这里一定要添加
-                .anyRequest().authenticated()
-                .and()
-                .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtUtil))
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(), jwtUtil))
-                .logout().logoutUrl("/logout").addLogoutHandler(new JwtLogOutHandler(jwtUtil))
-                .and()
-                // CRSF禁用，因为不使用session
-                .csrf().disable()
-                // 禁用session
-                .sessionManagement().disable()
-                // 禁用form登录
-                .formLogin().disable()
-                // 支持跨域
-                .cors()
-                .and();
+        http// CRSF禁用，因为不使用session
+            .csrf().disable()
+            // 禁用session
+            .sessionManagement().disable()
+            // 禁用form登录
+            .formLogin().disable()
+            // 支持跨域
+            .cors()
+            .and()
+            .authorizeRequests()
+            //默认其它的请求都需要认证，这里一定要添加
+            .anyRequest().authenticated()
+            .and()
+            .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtUtil))
+            .addFilter(new JwtAuthorizationFilter(authenticationManager(), jwtUtil))
+            .logout().logoutUrl("/logout").addLogoutHandler(new JwtLogOutHandler(jwtUtil))
+            .and();
     }
 
     /**
@@ -98,8 +97,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         // 放行的资源
-//        web.ignoring()
-//                .antMatchers(HttpMethod.POST, "/business/notes/userNotes");
+        web.ignoring()
+                // 允许对于网站静态资源的无授权访问
+                .antMatchers(
+                        "/swagger-ui.html",
+                        "/swagger-ui/*",
+                        "/swagger-resources/**",
+                        "/v2/api-docs",
+                        "/v3/api-docs",
+                        "/webjars/**",
+                        "/actuator/**",
+                        "/druid/**",
+                        "/*/v2/api-docs"
+                );
     }
 
     /**
