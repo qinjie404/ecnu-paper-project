@@ -1,20 +1,36 @@
 spring:
+  # 时区
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
+  # 文件上传大小
   servlet:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+  # redis
+  redis:
+    host: localhost
+    port: 6379
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 20
+        min-idle: 1
+    lettuce:
+      pool:
+        max-wait: 60000ms
+    database: 0
+    password: 123456
 
 mybatis:
-  #开启mybatis驼峰命名
+  # 开启mybatis驼峰命名
   configuration:
     map-underscore-to-camel-case: true
-  #mapper文件所在位置
+  # mapper文件所在位置
   mapper-locations: classpath*:mappers/**/*.xml
 
-#设置编码
+# 设置编码
 server:
   servlet:
     encoding:
@@ -34,11 +50,11 @@ file:
   root-path: E:\pet\file\
   upload-dir: upload
 
-#swagger
+# swagger
 swagger:
   base-package: com.ecnu.edu
 
-#控制台打印sql
+# 控制台打印sql
 logging:
   level:
     com:
