@@ -2,7 +2,7 @@ package com.ecnu.edu.petbusiness.label.service;
 
 
 import com.ecnu.edu.petapibase.base.service.BaseService;
-import com.ecnu.edu.petapibase.common.domain.LabelItemDO;
+import com.ecnu.edu.petapibase.label.domain.LabelItemDO;
 
 /**
 * Service - 表现子类表

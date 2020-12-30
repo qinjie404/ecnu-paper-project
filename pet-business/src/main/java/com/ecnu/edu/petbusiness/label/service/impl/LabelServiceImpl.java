@@ -1,7 +1,7 @@
 package com.ecnu.edu.petbusiness.label.service.impl;
 
 import com.ecnu.edu.petapibase.base.service.impl.BaseServiceImpl;
-import com.ecnu.edu.petapibase.common.domain.LabelDO;
+import com.ecnu.edu.petapibase.label.domain.LabelDO;
 import com.ecnu.edu.petbusiness.label.service.LabelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

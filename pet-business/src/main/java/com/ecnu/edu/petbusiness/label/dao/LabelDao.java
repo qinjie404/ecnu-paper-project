@@ -1,7 +1,7 @@
 package com.ecnu.edu.petbusiness.label.dao;
 
 import com.ecnu.edu.petapibase.base.dao.BaseDao;
-import com.ecnu.edu.petapibase.common.domain.LabelDO;
+import com.ecnu.edu.petapibase.label.domain.LabelDO;
 import org.springframework.stereotype.Repository;
 
 /**
