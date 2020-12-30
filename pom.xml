@@ -28,6 +28,8 @@
         <mapper.version>4.1.5</mapper.version>
         <hutool.version>5.5.1</hutool.version>
         <jjwt.version>0.9.1</jjwt.version>
+        <commons-pool2.version>2.8.0</commons-pool2.version>
+        <jackson-databind.version>2.10.1</jackson-databind.version>
     </properties>
 
     <!--子模块 -->

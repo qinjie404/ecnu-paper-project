@@ -17,7 +17,6 @@ import java.util.Map;
  */
 @SpringBootTest
 @Slf4j
-@Import(PetBusinessApplication.class)
 public class RedisTest {
 
     @Autowired
@@ -35,5 +34,11 @@ public class RedisTest {
         map.put("b", 1);
         redisUtil.hmset("qq", map,60);
 
+    }
+
+    @Test
+    void hgetTest() {
+       log.info("hget:{}",redisUtil.hget("qinjie","1"));
+       log.info("hmget:{}",redisUtil.hmget("qinjie"));
     }
 }
