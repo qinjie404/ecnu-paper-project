@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ecnu.edu.petbusiness.common.dao.FileInfoDao">
+
+
+    <insert id="saveEntity" useGeneratedKeys="true" keyProperty="fileId">
+        insert into pet_file_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="targetId != null">
+                target_id,
+            </if>
+            <if test="targetType != null and targetType != ''">
+                target_type,
+            </if>
+            <if test="fileName != null and fileName != ''">
+                file_name,
+            </if>
+            <if test="fileType != null and fileType != ''">
+                file_type,
+            </if>
+            <if test="filePath != null and filePath != ''">
+                file_path,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createId != null">
+                create_id,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateId != null">
+                update_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="targetId != null">
+                #{targetId},
+            </if>
+            <if test="targetType != null and targetType != ''">
+                #{targetType},
+            </if>
+            <if test="fileName != null and fileName != ''">
+                #{fileName},
+            </if>
+            <if test="fileType != null and fileType != ''">
+                #{fileType},
+            </if>
+            <if test="filePath != null and filePath != ''">
+                #{filePath},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="createId != null">
+                #{createId},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="updateId != null">
+                #{updateId},
+            </if>
+        </trim>
+    </insert>
+</mapper>

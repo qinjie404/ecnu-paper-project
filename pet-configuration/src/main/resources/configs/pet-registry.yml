@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: pet-registry
+    instance_id: localhost
+
+server:
+  port: 8001
+
+# Eureka相关配置
+eureka:
+  client:
+    register-with-eureka: false #不注册服务
+    fetch-registry: false #不拉取服务清单
+    serviceUrl:
+      defaultZone: http://localhost:${server.port}/eureka/
+
