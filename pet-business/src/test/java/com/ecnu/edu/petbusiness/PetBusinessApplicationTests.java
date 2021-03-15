@@ -17,4 +17,8 @@ class PetBusinessApplicationTests {
 
     }
 
+    @Test
+    void ipAddressUtil() {
+        log.info("地址：{}", IpAddressUtil.getNewInstance().getCityInfo("223.104.213.60"));
+    }
 }
