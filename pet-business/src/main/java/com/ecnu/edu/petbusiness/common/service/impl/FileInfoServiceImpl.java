@@ -54,7 +54,7 @@ public class FileInfoServiceImpl extends BaseServiceImpl<FileInfoDO> implements 
             saveEntity(fileInfoDO);
             return fileInfoDO.getFileId();
         } catch (Exception e) {
-            log.error("文件保存失败：", e);
+            log.error("文件保存失败：" , e);
             return 0;
         }
     }

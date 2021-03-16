@@ -9,7 +9,6 @@ import reactor.core.publisher.Mono;
 import springfox.documentation.swagger.web.*;
 
 import java.util.Optional;
-
 @RestController
 public class SwaggerHandler {
     @Autowired(required = false)

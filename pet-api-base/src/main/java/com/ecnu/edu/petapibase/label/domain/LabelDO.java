@@ -10,18 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * EO - 标签大类表
- * ============================================================================
- * 版权所有 2020 。
- *
- * @author qinjie
- * @version 1.0 2020-11-26
- * ============================================================================
- */
+* EO - 标签大类表
+* ============================================================================
+* 版权所有 2020 。
+*
+* @author qinjie
+* @version 1.0 2020-11-26
+* ============================================================================
+*/
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "pet_label")
-@ApiModel(value = "LabelDO实体", description = "标签大类表")
+@ApiModel(value = "LabelDO实体",description = "标签大类表")
 public class LabelDO extends BaseDataDO {
 
 

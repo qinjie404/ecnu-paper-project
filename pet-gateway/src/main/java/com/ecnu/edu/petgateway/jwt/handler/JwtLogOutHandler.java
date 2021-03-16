@@ -34,6 +34,6 @@ public class JwtLogOutHandler implements LogoutHandler {
             String userName = jwtUtil.getUserName(token);
             // todo:从redis删除token
         }
-        ResponseUtil.getResponse(httpServletResponse, HttpStatus.OK, CommonRes.SUCCESS_STATUS, "登出成功", "登出成功");
+        ResponseUtil.getResponse(httpServletResponse,HttpStatus.OK, CommonRes.SUCCESS_STATUS,"登出成功","登出成功");
     }
 }

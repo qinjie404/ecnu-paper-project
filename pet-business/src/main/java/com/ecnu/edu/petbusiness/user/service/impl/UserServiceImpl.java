@@ -41,7 +41,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDO> implements UserServ
 
     @Override
     public UserDO findByUserName(String userName) {
-        UserDO userDO = new UserDO();
+        UserDO userDO=new UserDO();
         userDO.setUserName(userName);
         userDO.setStatus(1);
         return userDao.selectOne(userDO);

@@ -9,18 +9,18 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.Table;
 
 /**
- * EO - 表现子类表
- * ============================================================================
- * 版权所有 2020 。
- *
- * @author qinjie
- * @version 1.0 2020-11-26
- * ============================================================================
- */
+* EO - 表现子类表
+* ============================================================================
+* 版权所有 2020 。
+*
+* @author qinjie
+* @version 1.0 2020-11-26
+* ============================================================================
+*/
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "pet_label_item")
-@ApiModel(value = "LabelItemDO实体", description = "表现子类表")
+@ApiModel(value = "LabelItemDO实体",description = "表现子类表")
 public class LabelItemDO extends BaseDataDO {
 
 

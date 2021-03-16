@@ -47,22 +47,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http// CRSF禁用，因为不使用session
-                .csrf().disable()
-                // 禁用session
-                .sessionManagement().disable()
-                // 禁用form登录
-                .formLogin().disable()
-                // 支持跨域
-                .cors()
-                .and()
-                .authorizeRequests()
-                //默认其它的请求都需要认证，这里一定要添加
-                .anyRequest().authenticated()
-                .and()
-                .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtUtil))
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(), jwtUtil))
-                .logout().logoutUrl("/logout").addLogoutHandler(new JwtLogOutHandler(jwtUtil))
-                .and();
+            .csrf().disable()
+            // 禁用session
+            .sessionManagement().disable()
+            // 禁用form登录
+            .formLogin().disable()
+            // 支持跨域
+            .cors()
+            .and()
+            .authorizeRequests()
+            //默认其它的请求都需要认证，这里一定要添加
+            .anyRequest().authenticated()
+            .and()
+            .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtUtil))
+            .addFilter(new JwtAuthorizationFilter(authenticationManager(), jwtUtil))
+            .logout().logoutUrl("/logout").addLogoutHandler(new JwtLogOutHandler(jwtUtil))
+            .and();
     }
 
     /**

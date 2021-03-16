@@ -1,15 +1,15 @@
 package ${package.Entity};
 
 <#list table.importPackages as pkg>
-    import ${pkg};
+import ${pkg};
 </#list>
 <#if entityLombokModel>
-    import lombok.Data;
-    import lombok.EqualsAndHashCode;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 </#if>
 <#if swagger2>
-    import io.swagger.annotations.ApiModel;
-    import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 </#if>
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -26,16 +26,16 @@ import java.util.Date;
 * ============================================================================
 */
 <#if entityLombokModel>
-    @Data
+@Data
     <#if superEntityClass??>
-        @EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
     <#else>
-        @EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false)
     </#if>
 </#if>
 @Table(name = "${table.name}")
 <#if swagger2>
-    @ApiModel(value = "${entity}实体",description = "${table.comment!}")
+@ApiModel(value = "${entity}实体",description = "${table.comment!}")
 </#if>
 public class ${entity} extends ${superEntityClass} {
 
@@ -51,25 +51,25 @@ public class ${entity} extends ${superEntityClass} {
 
     <#if field.comment!?length gt 0>
         <#if swagger2>
-            @ApiModelProperty(value = "${field.comment}")
+    @ApiModelProperty(value = "${field.comment}")
         <#else>
-            /**
-            * ${field.comment}
-            */
+    /**
+    * ${field.comment}
+    */
         </#if>
     </#if>
     <#if field.keyFlag>
     <#-- 主键 -->
-        <#if field.keyIdentityFlag>
-        <#--@TableId(value = "${field.name}", type = IdType.AUTO)-->
-            @Id
-        <#elseif idType??>
-        <#--@TableId(value = "${field.name}", type = IdType.${idType})-->
-            @Id
-        <#elseif field.convert>
-        <#--@TableId("${field.name}")-->
-            @Id
-        </#if>
+<#if field.keyIdentityFlag>
+    <#--@TableId(value = "${field.name}", type = IdType.AUTO)-->
+    @Id
+<#elseif idType??>
+    <#--@TableId(value = "${field.name}", type = IdType.${idType})-->
+    @Id
+<#elseif field.convert>
+    <#--@TableId("${field.name}")-->
+    @Id
+</#if>
     <#-- 普通字段 -->
     <#elseif field.fill??>
     <#-- -----   存在字段填充设置   ----->

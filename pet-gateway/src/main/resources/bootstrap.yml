@@ -13,4 +13,4 @@ zuul:
 
 pet:
   service:
-    pet-business: pet-business
+    pet-business : pet-business

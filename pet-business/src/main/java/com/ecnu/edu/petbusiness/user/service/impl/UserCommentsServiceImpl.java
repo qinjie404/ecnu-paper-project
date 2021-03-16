@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * Service - 评论表
- * ============================================================================
- * 版权所有 2020 。
- *
- * @author qinjie
- * @version 1.0 2020-11-25
- * ============================================================================
- */
+* Service - 评论表
+* ============================================================================
+* 版权所有 2020 。
+*
+* @author qinjie
+* @version 1.0 2020-11-25
+* ============================================================================
+*/
 @Slf4j
 @Service
 public class UserCommentsServiceImpl extends BaseServiceImpl<UserCommentsDO> implements UserCommentsService {

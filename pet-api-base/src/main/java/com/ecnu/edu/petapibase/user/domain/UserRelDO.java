@@ -10,18 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * EO - 用户关联关系(粉丝)表
- * ============================================================================
- * 版权所有 2020 。
- *
- * @author qinjie
- * @version 1.0 2020-11-26
- * ============================================================================
- */
+* EO - 用户关联关系(粉丝)表
+* ============================================================================
+* 版权所有 2020 。
+*
+* @author qinjie
+* @version 1.0 2020-11-26
+* ============================================================================
+*/
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "pet_user_rel")
-@ApiModel(value = "UserRelDO实体", description = "用户关联关系(粉丝)表")
+@ApiModel(value = "UserRelDO实体",description = "用户关联关系(粉丝)表")
 public class UserRelDO extends BaseDataDO {
 
 

@@ -135,7 +135,7 @@ public class FileInfoController {
             }
             return CommonRes.getCommonRes(CommonRes.SUCCESS_STATUS, fileIds);
         } catch (Exception e) {
-            log.error("文件上传接口异常：", e);
+            log.error("文件上传接口异常：" , e);
             return CommonRes.getCommonRes(CommonRes.FAIL_STATUS, "文件上传接口异常");
         }
     }

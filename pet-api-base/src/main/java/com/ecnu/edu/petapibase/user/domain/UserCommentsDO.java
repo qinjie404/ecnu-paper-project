@@ -10,18 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * EO - 评论表
- * ============================================================================
- * 版权所有 2020 。
- *
- * @author qinjie
- * @version 1.0 2020-11-25
- * ============================================================================
- */
+* EO - 评论表
+* ============================================================================
+* 版权所有 2020 。
+*
+* @author qinjie
+* @version 1.0 2020-11-25
+* ============================================================================
+*/
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "pet_user_comments")
-@ApiModel(value = "UserCommentsDO实体", description = "评论表")
+@ApiModel(value = "UserCommentsDO实体",description = "评论表")
 public class UserCommentsDO extends BaseDataDO {
 
 

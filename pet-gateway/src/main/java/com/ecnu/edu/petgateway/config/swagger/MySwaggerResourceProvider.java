@@ -27,7 +27,7 @@ public class MySwaggerResourceProvider implements SwaggerResourcesProvider {
         List<Route> routes = routeLocator.getRoutes();
         routes.forEach(route -> {
             //授权不维护到swagger
-            if (!StringUtils.contains(route.getId(), null)) {
+            if (!StringUtils.contains(route.getId(), null)){
                 resources.add(swaggerResource(route.getId(), route.getFullPath().replace("**", "v2/api-docs")));
             }
         });

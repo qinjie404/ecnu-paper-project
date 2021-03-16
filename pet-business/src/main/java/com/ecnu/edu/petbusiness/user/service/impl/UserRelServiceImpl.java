@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * Service - 用户关联关系(粉丝)表
- * ============================================================================
- * 版权所有 2020 。
- *
- * @author qinjie
- * @version 1.0 2020-11-26
- * ============================================================================
- */
+* Service - 用户关联关系(粉丝)表
+* ============================================================================
+* 版权所有 2020 。
+*
+* @author qinjie
+* @version 1.0 2020-11-26
+* ============================================================================
+*/
 @Slf4j
 @Service
 public class UserRelServiceImpl extends BaseServiceImpl<UserRelDO> implements UserRelService {

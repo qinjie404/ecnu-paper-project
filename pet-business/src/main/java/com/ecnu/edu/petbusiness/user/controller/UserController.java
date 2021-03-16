@@ -24,7 +24,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/findByUserName")
-    @ApiOperation(value = "根据用户名获取用户", httpMethod = "POST")
+    @ApiOperation(value = "根据用户名获取用户",httpMethod = "POST")
     public UserDO findByUserName(@RequestParam("userName") String userName) {
         return userService.findByUserName(userName);
     }

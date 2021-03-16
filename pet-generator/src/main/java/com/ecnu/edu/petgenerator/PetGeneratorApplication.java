@@ -108,7 +108,7 @@ public class PetGeneratorApplication {
                  */
                 Map<String, Object> map = new HashMap<>(1);
                 map.put("year", String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
-                map.put("superEntityClassPackage", getConfig().getStrategyConfig().getSuperEntityClass());
+                map.put("superEntityClassPackage",getConfig().getStrategyConfig().getSuperEntityClass());
                 this.setMap(map);
             }
         };

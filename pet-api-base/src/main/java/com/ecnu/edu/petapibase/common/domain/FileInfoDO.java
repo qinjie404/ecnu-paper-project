@@ -10,18 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * EO - 文件表
- * ============================================================================
- * 版权所有 2020 。
- *
- * @author qinjie
- * @version 1.0 2020-11-26
- * ============================================================================
- */
+* EO - 文件表
+* ============================================================================
+* 版权所有 2020 。
+*
+* @author qinjie
+* @version 1.0 2020-11-26
+* ============================================================================
+*/
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "pet_file_info")
-@ApiModel(value = "FileInfoDO实体", description = "文件表")
+@ApiModel(value = "FileInfoDO实体",description = "文件表")
 public class FileInfoDO extends BaseDataDO {
 
 
