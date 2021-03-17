@@ -1,6 +1,5 @@
 package com.ecnu.edu.petgateway.jwt.filter;
 
-import com.ecnu.edu.petapibase.base.entity.CommonRes;
 import com.ecnu.edu.petgateway.jwt.util.JwtUtil;
 import com.ecnu.edu.petgateway.jwt.util.ResponseUtil;
 import org.springframework.http.HttpStatus;
@@ -47,10 +46,10 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws IOException, ServletException {
 
-        String token = request.getHeader("Token");
+        String token = request.getHeader(JwtUtil.TOKEN_HEADER);
         // 如果请求头中没有token信息则返回失败信息
         if (token == null) {
-            ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, CommonRes.FAIL_STATUS, "授权失败", "获取token失败");
+            ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, "授权失败", "获取token失败");
             return;
         }
         // 如果请求头中有token，则进行解析，并且设置认证信息
@@ -59,7 +58,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         } catch (Exception e) {
             logger.error("授权失败", e);
             //返回json形式的错误信息
-            ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, CommonRes.FAIL_STATUS, "授权失败", e.getMessage());
+            ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, "授权失败", e.getMessage());
             return;
         }
         chain.doFilter(request, response);

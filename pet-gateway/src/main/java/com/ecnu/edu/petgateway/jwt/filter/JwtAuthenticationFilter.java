@@ -1,6 +1,5 @@
 package com.ecnu.edu.petgateway.jwt.filter;
 
-import com.ecnu.edu.petapibase.base.entity.CommonRes;
 import com.ecnu.edu.petapibase.user.domain.UserDO;
 import com.ecnu.edu.petgateway.jwt.util.JwtUtil;
 import com.ecnu.edu.petgateway.jwt.util.ResponseUtil;
@@ -80,7 +79,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         log.info("认证成功。当前登陆人:{}", loginUser);
         // 生成token
         String token = jwtUtil.createJwtToken(loginUser.getUsername());
-        ResponseUtil.getResponse(response, HttpStatus.OK, CommonRes.SUCCESS_STATUS, "认证成功", token);
+        response.setHeader(JwtUtil.TOKEN_HEADER, token);
+        ResponseUtil.getResponse(response, HttpStatus.OK, "认证成功", token);
     }
 
     /**
@@ -95,6 +95,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         log.error("认证失败", failed);
-        ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, CommonRes.FAIL_STATUS, "认证失败", "用户名或密码错误");
+        ResponseUtil.getResponse(response, HttpStatus.UNAUTHORIZED, "认证失败", "用户名或密码错误");
     }
 }

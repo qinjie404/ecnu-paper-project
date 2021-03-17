@@ -1,6 +1,5 @@
 package com.ecnu.edu.petgateway.jwt.handler;
 
-import com.ecnu.edu.petapibase.base.entity.CommonRes;
 import com.ecnu.edu.petgateway.jwt.util.JwtUtil;
 import com.ecnu.edu.petgateway.jwt.util.ResponseUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -27,13 +26,13 @@ public class JwtLogOutHandler implements LogoutHandler {
     @Override
     public void logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) {
         // 1.从header中获取token
-        String token = httpServletRequest.getHeader("Token");
+        String token = httpServletRequest.getHeader(JwtUtil.TOKEN_HEADER);
 
         // 2.若token不为空，则删除，从redis删除token
         if (StringUtils.isNotBlank(token)) {
             String userName = jwtUtil.getUserName(token);
             // todo:从redis删除token
         }
-        ResponseUtil.getResponse(httpServletResponse,HttpStatus.OK, CommonRes.SUCCESS_STATUS,"登出成功","登出成功");
+        ResponseUtil.getResponse(httpServletResponse, HttpStatus.OK, "登出成功", "登出成功");
     }
 }

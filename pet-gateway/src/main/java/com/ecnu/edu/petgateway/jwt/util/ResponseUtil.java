@@ -14,15 +14,15 @@ import java.io.IOException;
 @Slf4j
 public class ResponseUtil {
 
-    public static <T> void getResponse(HttpServletResponse response, HttpStatus httpStatus, Integer status, String message, T data) {
+    public static <T> void getResponse(HttpServletResponse response, HttpStatus httpStatus, String message, T data) {
         response.setStatus(httpStatus.value());
         response.setContentType("application/json;charset=UTF-8");
         ObjectMapper mapper = new ObjectMapper();
         try {
-            mapper.writeValue(response.getWriter(), CommonRes.getCommonRes(status, message, data));
+            mapper.writeValue(response.getWriter(), CommonRes.getCommonRes(httpStatus.value(), message, data));
         } catch (IOException e) {
             log.error("io异常", e);
-            ResponseUtil.getResponse(response, HttpStatus.INTERNAL_SERVER_ERROR, CommonRes.FAIL_STATUS, "io异常", "io异常");
+            ResponseUtil.getResponse(response, HttpStatus.INTERNAL_SERVER_ERROR, "io异常", "io异常");
         }
     }
 }

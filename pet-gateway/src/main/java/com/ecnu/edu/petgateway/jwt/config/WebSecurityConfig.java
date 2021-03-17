@@ -14,6 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.header.Header;
+import org.springframework.security.web.header.writers.StaticHeadersWriter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -62,7 +64,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtUtil))
             .addFilter(new JwtAuthorizationFilter(authenticationManager(), jwtUtil))
             .logout().logoutUrl("/logout").addLogoutHandler(new JwtLogOutHandler(jwtUtil))
-            .and();
+                .and().headers().addHeaderWriter(new StaticHeadersWriter(Arrays.asList(
+                //支持所有源的访问
+                new Header("Access-control-Allow-Origin", "*"),
+                //使ajax请求能够取到header中的jwt token信息
+                new Header("Access-Control-Expose-Headers", "Authorization"))));
     }
 
     /**
@@ -82,7 +88,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 允许访问的方法名,GET POST等
         configuration.setAllowedHeaders(Arrays.asList("*"));
         // 暴露哪些头部信息 不能用*因为跨域访问默认不能获取全部头部信息
-        configuration.addExposedHeader("Token");
+        configuration.addExposedHeader(JwtUtil.TOKEN_HEADER);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
